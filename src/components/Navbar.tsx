@@ -12,6 +12,8 @@ const links = [
   { to: "/academics", key: "nav.academics" as const },
   { to: "/admissions", key: "nav.admissions" as const },
   { to: "/calendar", key: "nav.calendar" as const },
+  { to: "/notices", key: "nav.notices" as const },
+  { to: "/fees", key: "nav.fees" as const },
   { to: "/contact", key: "nav.contact" as const },
 ];
 
@@ -74,32 +76,34 @@ export const Navbar = () => {
           ))}
         </motion.nav>
 
-        <div className="hidden md:flex items-center rounded-full border border-gold/35 bg-card/70 p-1">
-          <button
-            type="button"
-            onClick={() => setLanguage("en")}
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
-              language === "en" ? "bg-primary text-primary-foreground" : "text-foreground/80 hover:text-primary",
-            )}
-          >
-            {t("lang.english")}
-          </button>
-          <button
-            type="button"
-            onClick={() => setLanguage("hi")}
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
-              language === "hi" ? "bg-primary text-primary-foreground" : "text-foreground/80 hover:text-primary",
-            )}
-          >
-            {t("lang.hindi")}
-          </button>
-        </div>
+        <div className="hidden md:flex items-center gap-3">
+          <div className="flex items-center rounded-full border border-gold/35 bg-card/70 p-1">
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              className={cn(
+                "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
+                language === "en" ? "bg-primary text-primary-foreground" : "text-foreground/80 hover:text-primary",
+              )}
+            >
+              {t("lang.english")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage("hi")}
+              className={cn(
+                "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
+                language === "hi" ? "bg-primary text-primary-foreground" : "text-foreground/80 hover:text-primary",
+              )}
+            >
+              {t("lang.hindi")}
+            </button>
+          </div>
 
-        <Button asChild variant="hero" size="sm" className="hidden md:inline-flex hover:shadow-gold transition-shadow duration-300">
-          <Link to="/admissions">{t("nav.applyNow")}</Link>
-        </Button>
+          <Button asChild variant="hero" size="sm" className="hover:shadow-gold transition-shadow duration-300">
+            <Link to="/admissions">{t("nav.applyNow")}</Link>
+          </Button>
+        </div>
 
         <button
           aria-label="Toggle menu"

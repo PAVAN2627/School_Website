@@ -8,6 +8,8 @@ type TranslationKey =
   | "nav.academics"
   | "nav.admissions"
   | "nav.calendar"
+  | "nav.notices"
+  | "nav.fees"
   | "nav.contact"
   | "nav.applyNow"
   | "lang.english"
@@ -24,6 +26,8 @@ const messages: Record<Language, Record<TranslationKey, string>> = {
     "nav.academics": "Academics",
     "nav.admissions": "Admissions",
     "nav.calendar": "Calendar",
+    "nav.notices": "Notices",
+    "nav.fees": "Fee Structure",
     "nav.contact": "Contact",
     "nav.applyNow": "Apply Now",
     "lang.english": "EN",
@@ -39,6 +43,8 @@ const messages: Record<Language, Record<TranslationKey, string>> = {
     "nav.academics": "शैक्षणिक",
     "nav.admissions": "प्रवेश",
     "nav.calendar": "कैलेंडर",
+    "nav.notices": "सूचनाएं",
+    "nav.fees": "शुल्क संरचना",
     "nav.contact": "संपर्क",
     "nav.applyNow": "अभी आवेदन करें",
     "lang.english": "EN",

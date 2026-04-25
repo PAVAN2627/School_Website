@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { PageHero } from "@/components/PageHero";
+import { motion } from "framer-motion";import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,6 +52,32 @@ const Admissions = () => {
               <div className="font-display text-xs text-primary mb-1">STEP {i + 1}</div>
               <h3 className="font-display text-xl text-secondary mb-2">{s.title}</h3>
               <p className="text-sm text-muted-foreground">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Eligibility */}
+      <section className="container-narrow pb-4">
+        <SectionHeader eyebrow="॥ पात्रता ॥" title="Eligibility Criteria" subtitle="Age and academic requirements for each stage of admission." />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { stage: "Class I", age: "5–6 years", note: "No prior schooling required" },
+            { stage: "Class VI", age: "10–12 years", note: "Passed Class V from recognised school" },
+            { stage: "Class IX", age: "13–15 years", note: "Passed Class VIII, minimum 50% marks" },
+            { stage: "Class XI", age: "15–17 years", note: "Passed Class X Board with 55% aggregate" },
+          ].map((e, i) => (
+            <motion.div
+              key={e.stage}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="bg-card rounded-2xl border border-gold/20 p-5 shadow-soft"
+            >
+              <div className="font-display text-xl text-secondary mb-1">{e.stage}</div>
+              <div className="text-sm font-medium text-primary mb-1">Age: {e.age}</div>
+              <div className="text-xs text-muted-foreground">{e.note}</div>
             </motion.div>
           ))}
         </div>

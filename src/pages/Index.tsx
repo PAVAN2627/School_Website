@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   BookOpen, FlaskConical, Palette, Trophy, Users, Award, Sparkles, ArrowRight, Quote,
+  Megaphone, FileText, Wallet, CalendarDays,
 } from "lucide-react";
 import heroHome from "@/assets/newherosection.png";
 import heroHomeMobile from "@/assets/mobilevertficateimage.png";
+import { announcements, calendarEvents, notices } from "@/data/schoolData";
 
 const features = [
   { icon: BookOpen, title: "Holistic Learning", desc: "Vedic wisdom blended with modern pedagogy for the whole child." },
@@ -105,6 +107,83 @@ const Index = () => {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* Announcements + Upcoming Events */}
+      <section className="container-narrow mt-12 grid md:grid-cols-2 gap-6">
+        {/* Announcements */}
+        <div className="bg-card rounded-2xl border border-gold/20 shadow-soft overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-gold/15">
+            <div className="flex items-center gap-2">
+              <Megaphone className="h-4 w-4 text-primary" />
+              <h3 className="font-display font-semibold text-secondary">Announcements</h3>
+            </div>
+            <Link to="/notices" className="text-xs text-primary hover:underline">View all</Link>
+          </div>
+          <ul className="divide-y divide-gold/10">
+            {announcements.slice(0, 4).map(a => (
+              <li key={a.id} className="px-5 py-3 flex items-start gap-3">
+                <span className={`mt-1 shrink-0 h-2 w-2 rounded-full ${a.category === "Urgent" ? "bg-red-500" : a.category === "Exam" ? "bg-blue-500" : "bg-primary"}`} />
+                <div>
+                  <p className="text-sm font-medium text-foreground/90 leading-snug">{a.title}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{a.date}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Upcoming Events */}
+        <div className="bg-card rounded-2xl border border-gold/20 shadow-soft overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-gold/15">
+            <div className="flex items-center gap-2">
+              <CalendarDays className="h-4 w-4 text-primary" />
+              <h3 className="font-display font-semibold text-secondary">Upcoming Events</h3>
+            </div>
+            <Link to="/calendar" className="text-xs text-primary hover:underline">Full calendar</Link>
+          </div>
+          <ul className="divide-y divide-gold/10">
+            {calendarEvents.slice(0, 4).map(e => {
+              const d = new Date(e.date);
+              return (
+                <li key={e.id} className="px-5 py-3 flex items-center gap-3">
+                  <div className="shrink-0 text-center w-10">
+                    <div className="font-display text-lg font-bold text-primary leading-none">{d.getDate()}</div>
+                    <div className="text-[10px] uppercase text-muted-foreground">{d.toLocaleString("en-IN", { month: "short" })}</div>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-foreground/90 truncate">{e.title}</p>
+                    <span className="text-[10px] uppercase tracking-wide text-muted-foreground">{e.category}</span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      {/* Quick Links */}
+      <section className="container-narrow mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { to: "/notices", icon: FileText, label: "Notices", sub: "Circulars & updates" },
+          { to: "/fees", icon: Wallet, label: "Fee Structure", sub: "Class-wise fees" },
+          { to: "/calendar", icon: CalendarDays, label: "Calendar", sub: "Exams & events" },
+          { to: "/admissions", icon: BookOpen, label: "Admissions", sub: "Apply for 2026–27" },
+        ].map(({ to, icon: Icon, label, sub }) => (
+          <Link
+            key={to}
+            to={to}
+            className="bg-card rounded-2xl border border-gold/20 p-4 flex items-center gap-3 hover:shadow-warm hover:border-gold/50 transition-all group"
+          >
+            <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-gradient-saffron group-hover:text-white transition-all">
+              <Icon className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="font-medium text-sm text-secondary">{label}</div>
+              <div className="text-xs text-muted-foreground">{sub}</div>
+            </div>
+          </Link>
+        ))}
       </section>
 
       {/* Features */}
