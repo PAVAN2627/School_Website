@@ -9,8 +9,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   BookOpen, FlaskConical, Palette, Trophy, Users, Award, Sparkles, ArrowRight, Quote,
 } from "lucide-react";
-import heroHome from "@/assets/schoolhome.png";
-import heroHomeMobile from "@/assets/homemobilehero.png";
+import heroHome from "@/assets/newherosection.png";
+import heroHomeMobile from "@/assets/mobilevertficateimage.png";
 
 const features = [
   { icon: BookOpen, title: "Holistic Learning", desc: "Vedic wisdom blended with modern pedagogy for the whole child." },
