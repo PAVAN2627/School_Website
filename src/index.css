@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari+Sanskrit&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Indian Hindu Cultural Design System
+   Saffron, Maroon, Gold, Cream, Peacock — all HSL */
+
+@layer base {
+  :root {
+    /* Surfaces — warm parchment */
+    --background: 38 45% 96%;
+    --foreground: 20 40% 12%;
+
+    --card: 36 50% 98%;
+    --card-foreground: 20 40% 12%;
+
+    --popover: 36 50% 98%;
+    --popover-foreground: 20 40% 12%;
+
+    /* Saffron — primary brand */
+    --primary: 22 88% 52%;
+    --primary-foreground: 38 50% 98%;
+    --primary-glow: 32 95% 60%;
+
+    /* Maroon / Tilak red — secondary */
+    --secondary: 358 65% 32%;
+    --secondary-foreground: 38 50% 98%;
+
+    /* Peacock teal */
+    --accent: 184 65% 32%;
+    --accent-foreground: 38 50% 98%;
+
+    /* Gold */
+    --gold: 43 78% 52%;
+    --gold-foreground: 20 40% 12%;
+
+    --muted: 36 30% 90%;
+    --muted-foreground: 20 20% 38%;
+
+    --destructive: 0 75% 45%;
+    --destructive-foreground: 38 50% 98%;
+
+    --border: 32 35% 82%;
+    --input: 32 35% 82%;
+    --ring: 22 88% 52%;
+
+    --radius: 0.875rem;
+
+    /* Gradients */
+    --gradient-saffron: linear-gradient(135deg, hsl(22 88% 52%), hsl(38 95% 58%));
+    --gradient-festive: linear-gradient(135deg, hsl(358 65% 32%) 0%, hsl(22 88% 52%) 50%, hsl(43 88% 55%) 100%);
+    --gradient-temple: linear-gradient(180deg, hsl(38 80% 92%) 0%, hsl(32 70% 86%) 100%);
+    --gradient-peacock: linear-gradient(135deg, hsl(184 65% 32%), hsl(220 55% 28%));
+    --gradient-gold: linear-gradient(135deg, hsl(43 88% 55%), hsl(38 78% 48%));
+    --gradient-hero-overlay: linear-gradient(180deg, hsl(20 40% 12% / 0.15) 0%, hsl(20 40% 12% / 0.55) 100%);
+
+    /* Shadows */
+    --shadow-warm: 0 12px 40px -12px hsl(22 88% 40% / 0.35);
+    --shadow-temple: 0 20px 60px -20px hsl(358 65% 25% / 0.4);
+    --shadow-gold: 0 8px 24px -6px hsl(43 88% 50% / 0.5);
+    --shadow-soft: 0 4px 18px -6px hsl(20 40% 20% / 0.12);
+
+    /* Sidebar (defaults retained for shadcn) */
+    --sidebar-background: 38 45% 96%;
+    --sidebar-foreground: 20 40% 12%;
+    --sidebar-primary: 22 88% 52%;
+    --sidebar-primary-foreground: 38 50% 98%;
+    --sidebar-accent: 36 30% 90%;
+    --sidebar-accent-foreground: 20 40% 12%;
+    --sidebar-border: 32 35% 82%;
+    --sidebar-ring: 22 88% 52%;
+
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background-image:
+      radial-gradient(circle at 10% 0%, hsl(22 88% 52% / 0.06), transparent 40%),
+      radial-gradient(circle at 90% 100%, hsl(358 65% 32% / 0.05), transparent 40%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.01em;
+  }
+  .font-sanskrit {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply mx-auto w-full px-6 md:px-10 xl:px-14;
+  }
+  .text-gradient-saffron {
+    background: var(--gradient-saffron);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-festive {
+    background: var(--gradient-festive);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .border-ornate {
+    border-image: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--primary)), hsl(var(--secondary))) 1;
+  }
+  .divider-ornate {
+    @apply relative flex items-center justify-center gap-4 text-primary;
+  }
+  .divider-ornate::before,
+  .divider-ornate::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent;
+  }
+}
+
+@layer utilities {
+  .bg-paper {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(hsl(20 40% 12% / 0.04) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .glass-panel {
+    background: hsl(36 50% 98% / 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--gold) / 0.3);
+  }
+  .section-surface {
+    background:
+      linear-gradient(125deg, hsl(36 50% 98% / 0.95), hsl(38 45% 94% / 0.92)),
+      radial-gradient(circle at 12% 5%, hsl(43 88% 55% / 0.08), transparent 40%);
+    border: 1px solid hsl(var(--gold) / 0.28);
+    box-shadow: var(--shadow-soft);
+  }
+  .sacred-grid {
+    position: relative;
+    isolation: isolate;
+  }
+  .sacred-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.22;
+    background-image:
+      radial-gradient(circle at 1px 1px, hsl(22 88% 52% / 0.24) 1px, transparent 0),
+      linear-gradient(to right, hsl(22 88% 52% / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(358 65% 32% / 0.04) 1px, transparent 1px);
+    background-size: 20px 20px, 24px 24px, 24px 24px;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 92%);
+  }
+  .ornate-frame {
+    position: relative;
+  }
+  .ornate-frame::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    border-radius: inherit;
+    border: 1px solid hsl(var(--gold) / 0.38);
+    background:
+      linear-gradient(90deg, transparent, hsl(43 88% 55% / 0.35), transparent) border-box;
+    mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
