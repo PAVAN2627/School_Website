@@ -100,8 +100,12 @@ export const Navbar = () => {
             </button>
           </div>
 
+          <Button asChild variant="outline" size="sm" className="hover:shadow-gold transition-shadow duration-300">
+            <Link to="/admissions">Apply</Link>
+          </Button>
+
           <Button asChild variant="hero" size="sm" className="hover:shadow-gold transition-shadow duration-300">
-            <Link to="/admissions">{t("nav.applyNow")}</Link>
+            <Link to="/admin/login">Admin</Link>
           </Button>
         </div>
 
@@ -164,9 +168,14 @@ export const Navbar = () => {
                 </button>
               </div>
 
-              <Button asChild variant="hero" className="mt-2">
-                <Link to="/admissions" onClick={() => setOpen(false)}>{t("nav.applyNow")}</Link>
-              </Button>
+              <div className="flex gap-2 mt-2">
+                <Button asChild variant="outline" className="flex-1">
+                  <Link to="/admissions" onClick={() => setOpen(false)}>Apply</Link>
+                </Button>
+                <Button asChild variant="hero" className="flex-1">
+                  <Link to="/admin/login" onClick={() => setOpen(false)}>Admin</Link>
+                </Button>
+              </div>
             </nav>
           </motion.div>
         )}
