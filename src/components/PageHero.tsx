@@ -6,18 +6,32 @@ interface PageHeroProps {
   subtitle?: string;
   image: string;
   align?: "center" | "left";
+  imageFit?: "cover" | "contain";
+  imagePosition?: string;
+  size?: "default" | "compact" | "full";
   children?: React.ReactNode;
 }
 
-export const PageHero = ({ title, sanskrit, subtitle, image, align = "center", children }: PageHeroProps) => (
-  <section className="relative w-full overflow-x-clip overflow-y-hidden bg-gradient-temple min-h-[62vh] md:min-h-[72vh] flex items-center">
+export const PageHero = ({ title, sanskrit, subtitle, image, align = "center", imageFit = "cover", imagePosition = "center center", size = "default", children }: PageHeroProps) => (
+  <section className={`relative w-full overflow-x-clip overflow-y-hidden bg-gradient-temple flex items-center ${
+    size === "full"
+      ? "min-h-[75vh] md:min-h-[88vh]"
+      : size === "compact"
+      ? "min-h-[54vh] md:min-h-[62vh]"
+      : "min-h-[62vh] md:min-h-[72vh]"
+  }`}>
     {/* Background image with layered gradients */}
     <div className="absolute inset-0 w-full h-full">
       <img
         src={image}
         alt=""
         aria-hidden
-        className="absolute inset-0 h-full w-full object-cover object-[center_35%] md:object-[center_30%] opacity-95 animate-fade-in"
+        style={{ objectPosition: imagePosition }}
+        className={`absolute inset-0 h-full w-full opacity-95 animate-fade-in ${
+          imageFit === "contain"
+            ? "object-contain object-center"
+            : "object-cover"
+        }`}
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,hsl(20_40%_12%/0.14)_0%,hsl(20_40%_12%/0.26)_100%)]" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/28 via-background/8 to-background/10" />
@@ -25,7 +39,7 @@ export const PageHero = ({ title, sanskrit, subtitle, image, align = "center", c
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,hsl(22_88%_52%/0.12),transparent_55%),radial-gradient(circle_at_75%_70%,hsl(184_65%_32%/0.1),transparent_55%)]" />
     </div>
 
-    <div className={`container-narrow relative w-full py-14 md:py-20 z-10 ${align === "center" ? "text-center" : ""}`}>
+    <div className={`container-narrow relative w-full z-10 ${size === "compact" ? "py-10 md:py-14" : size === "full" ? "py-16 md:py-24" : "py-14 md:py-20"} ${align === "center" ? "text-center" : ""}`}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -43,7 +57,9 @@ export const PageHero = ({ title, sanskrit, subtitle, image, align = "center", c
           </motion.div>
         )}
 
-        <h1 className="font-display text-4xl md:text-6xl lg:text-[4rem] font-bold leading-tight drop-shadow-[0_10px_24px_hsl(20_40%_12%/0.62)]">
+        <h1 className={`font-display font-bold leading-tight drop-shadow-[0_10px_24px_hsl(20_40%_12%/0.62)] ${
+          size === "compact" ? "text-3xl md:text-5xl lg:text-[3.4rem]" : "text-4xl md:text-6xl lg:text-[4rem]"
+        }`}>
           <span
             className="bg-clip-text text-transparent animate-title-shimmer"
             style={{
@@ -73,7 +89,9 @@ export const PageHero = ({ title, sanskrit, subtitle, image, align = "center", c
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="mt-6 text-lg md:text-xl text-background leading-relaxed drop-shadow-[0_4px_14px_hsl(20_40%_12%/0.6)]"
+            className={`text-background leading-relaxed drop-shadow-[0_4px_14px_hsl(20_40%_12%/0.6)] ${
+              size === "compact" ? "mt-5 text-base md:text-lg" : "mt-6 text-lg md:text-xl"
+            }`}
           >
             {subtitle}
           </motion.p>
@@ -94,8 +112,8 @@ export const PageHero = ({ title, sanskrit, subtitle, image, align = "center", c
 
     {/* Bottom ornate wave divider */}
     <div className="absolute bottom-0 left-0 right-0 z-10">
-      <svg viewBox="0 0 1200 80" className="w-full h-16 fill-background" preserveAspectRatio="none">
-        <path d="M0,80 Q150,20 300,40 T600,40 T900,40 T1200,40 L1200,80 Z" />
+      <svg viewBox="0 0 1200 36" className="w-full h-6 fill-background" preserveAspectRatio="none">
+        <path d="M0,36 Q300,10 600,20 T1200,20 L1200,36 Z" />
       </svg>
     </div>
   </section>

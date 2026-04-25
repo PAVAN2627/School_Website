@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { MandalaBg } from "@/components/MandalaBg";
@@ -8,7 +9,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   BookOpen, FlaskConical, Palette, Trophy, Users, Award, Sparkles, ArrowRight, Quote,
 } from "lucide-react";
-import heroHome from "@/assets/hero-home.jpg";
+import heroHome from "@/assets/schoolhome.png";
 
 const features = [
   { icon: BookOpen, title: "Holistic Learning", desc: "Vedic wisdom blended with modern pedagogy for the whole child." },
@@ -18,11 +19,48 @@ const features = [
 ];
 
 const stats = [
-  { num: "20+", label: "Years of Legacy" },
-  { num: "2,400", label: "Happy Students" },
-  { num: "180+", label: "Devoted Teachers" },
-  { num: "98%", label: "Board Results" },
+  { value: 20, suffix: "+", label: "Years of Legacy" },
+  { value: 2400, label: "Happy Students", group: true },
+  { value: 180, suffix: "+", label: "Devoted Teachers" },
+  { value: 98, suffix: "%", label: "Board Results" },
 ];
+
+interface AnimatedCounterProps {
+  end: number;
+  duration?: number;
+  suffix?: string;
+  group?: boolean;
+}
+
+const AnimatedCounter = ({ end, duration = 1.6, suffix = "", group = false }: AnimatedCounterProps) => {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let frameId = 0;
+    let startTime = 0;
+
+    const animate = (time: number) => {
+      if (!startTime) startTime = time;
+      const progress = Math.min((time - startTime) / (duration * 1000), 1);
+      const eased = 1 - (1 - progress) ** 3;
+      setCount(Math.round(end * eased));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [duration, end, isInView]);
+
+  const display = group ? count.toLocaleString("en-IN") : String(count);
+  return <span ref={ref}>{display}{suffix}</span>;
+};
 
 const Index = () => {
   const { language, t } = useLanguage();
@@ -34,6 +72,9 @@ const Index = () => {
         sanskrit="॥ विद्यया अमृतमश्नुते ॥"
         subtitle={t("home.heroSubtitle")}
         image={heroHome}
+        imageFit="cover"
+        imagePosition="center center"
+        size="full"
       >
         <Button asChild variant="hero" size="xl">
           <Link to="/admissions">{t("home.beginJourney")} <ArrowRight className={`h-5 w-5 ${language === "hi" ? "hidden" : ""}`} /></Link>
@@ -55,7 +96,9 @@ const Index = () => {
               transition={{ delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="font-display text-3xl md:text-4xl font-bold text-gradient-saffron">{s.num}</div>
+              <div className="font-display text-3xl md:text-4xl font-bold text-gradient-saffron">
+                <AnimatedCounter end={s.value} suffix={s.suffix} group={s.group} />
+              </div>
               <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
             </motion.div>
           ))}
