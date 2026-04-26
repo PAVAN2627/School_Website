@@ -15,6 +15,8 @@ import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Notices from "./pages/Notices.tsx";
 import Fees from "./pages/Fees.tsx";
+import Login from "./pages/Login.tsx";
+import Signup from "./pages/Signup.tsx";
 import AdminLogin from "./pages/admin/Login.tsx";
 import AdminDashboard from "./pages/admin/Dashboard.tsx";
 import AdminAnnouncements from "./pages/admin/Announcements.tsx";
@@ -46,6 +48,9 @@ const App = () => (
               <Route path="/notices" element={<Notices />} />
               <Route path="/fees" element={<Fees />} />
             </Route>
+            {/* User Authentication */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             {/* Admin */}
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route element={<AdminLayout />}>
