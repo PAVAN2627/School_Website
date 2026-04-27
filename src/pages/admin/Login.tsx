@@ -4,20 +4,21 @@ import { GraduationCap, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { isAdminRegistered, validateAdminLogin } from "@/lib/adminAuth";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.username === "admin" && form.password === "admin123") {
+    if (validateAdminLogin(form.email.trim(), form.password)) {
       localStorage.setItem("admin-auth", "true");
       navigate("/admin");
     } else {
-      setError("Invalid username or password.");
+      setError("Invalid admin email or password.");
     }
   };
 
@@ -34,12 +35,13 @@ const AdminLogin = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="email">Admin Email</Label>
             <Input
-              id="username"
-              placeholder="admin"
-              value={form.username}
-              onChange={(e) => setForm({ ...form, username: e.target.value })}
+              id="email"
+              type="email"
+              placeholder="admin@school.in"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
             />
           </div>
@@ -66,7 +68,18 @@ const AdminLogin = () => {
           {error && <p className="text-sm text-red-500">{error}</p>}
           <Button type="submit" variant="hero" className="w-full mt-2">Sign In</Button>
         </form>
-        <p className="text-xs text-center text-muted-foreground mt-6">Default: admin / admin123</p>
+        {!isAdminRegistered() && (
+          <p className="text-xs text-center text-muted-foreground mt-5">
+            No admin account found. {" "}
+            <Link to="/admin/register" className="text-primary hover:underline">Register Admin</Link>
+          </p>
+        )}
+        {isAdminRegistered() && (
+          <p className="text-xs text-center text-muted-foreground mt-5">
+            Need to update credentials? {" "}
+            <Link to="/admin/register" className="text-primary hover:underline">Re-register Admin</Link>
+          </p>
+        )}
         <Link to="/" className="mt-4 flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">
           <ArrowLeft className="h-3.5 w-3.5" /> Back to Home
         </Link>
