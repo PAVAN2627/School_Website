@@ -27,10 +27,11 @@ const Contact = () => {
   return (
     <>
       <PageHero
-        title="Get in Touch"
+        title="Visit Our Vidyalaya"
         sanskrit="॥ अतिथि देवो भव ॥"
-        subtitle="A guest is verily a god. Walk in, write to us, or call — we love a good conversation."
+        subtitle="Parents, students, and guests are always welcome. Come meet us on campus or reach out for admissions and support."
         image={heroContact}
+        size="full"
       />
 
       <section className="container-narrow py-20 grid lg:grid-cols-5 gap-10">
@@ -87,13 +88,31 @@ const Contact = () => {
 
       {/* Map */}
       <section className="container-narrow pb-20">
-        <div className="rounded-3xl overflow-hidden border border-gold/30 shadow-temple">
-          <iframe
-            title="Vidyalaya location"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=77.55%2C12.93%2C77.65%2C13.03&layer=mapnik"
-            className="w-full h-96 border-0"
-            loading="lazy"
-          />
+        <div className="grid gap-5 md:grid-cols-2 md:items-stretch">
+          <div className="rounded-2xl section-surface ornate-frame p-5 md:p-6 h-full">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">Campus Address</p>
+            <h3 className="font-display text-2xl text-secondary mt-1">Vidyalaya Main Campus</h3>
+            <p className="mt-3 text-foreground/85 leading-relaxed">
+              108, Saraswati Marg, Bengaluru - 560001
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              Near Temple Square
+            </p>
+            <p className="mt-5 text-sm text-muted-foreground">
+              Reach us by metro or city bus. Parent parking is available at the entrance gate.
+            </p>
+          </div>
+
+          <div className="rounded-2xl section-surface ornate-frame p-3 md:p-4 flex items-center justify-center">
+            <div className="w-full max-w-[360px] aspect-square rounded-xl overflow-hidden border border-gold/30 shadow-soft">
+              <iframe
+                title="Vidyalaya location"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=77.55%2C12.93%2C77.65%2C13.03&layer=mapnik"
+                className="w-full h-full border-0"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </>

@@ -127,9 +127,14 @@ export const PageHero = ({ title, sanskrit, subtitle, image, mobileImage, align 
     </div>
 
     {/* Bottom ornate wave divider */}
-    <div className="absolute bottom-0 left-0 right-0 z-10">
-      <svg viewBox="0 0 1200 36" className="w-full h-6 fill-background" preserveAspectRatio="none">
-        <path d="M0,36 Q300,10 600,20 T1200,20 L1200,36 Z" />
+    <div className="absolute bottom-0 left-0 right-0 z-10 leading-none overflow-hidden">
+      <svg
+        viewBox="0 0 1440 120"
+        className="block h-12 w-full md:h-16 fill-background"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path d="M0,70 C220,38 420,42 620,60 C820,78 1040,82 1440,54 L1440,120 L0,120 Z" />
       </svg>
     </div>
   </section>

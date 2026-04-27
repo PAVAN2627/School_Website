@@ -100,12 +100,8 @@ export const Navbar = () => {
             </button>
           </div>
 
-          <Button asChild variant="outline" size="sm" className="hover:shadow-gold transition-shadow duration-300">
-            <Link to="/admissions">Apply</Link>
-          </Button>
-
           <Button asChild variant="hero" size="sm" className="hover:shadow-gold transition-shadow duration-300">
-            <Link to="/admin/login">Admin</Link>
+            <Link to="/admissions">Apply</Link>
           </Button>
         </div>
 
@@ -168,12 +164,9 @@ export const Navbar = () => {
                 </button>
               </div>
 
-              <div className="flex gap-2 mt-2">
-                <Button asChild variant="outline" className="flex-1">
+              <div className="mt-2">
+                <Button asChild variant="hero" className="w-full">
                   <Link to="/admissions" onClick={() => setOpen(false)}>Apply</Link>
-                </Button>
-                <Button asChild variant="hero" className="flex-1">
-                  <Link to="/admin/login" onClick={() => setOpen(false)}>Admin</Link>
                 </Button>
               </div>
             </nav>

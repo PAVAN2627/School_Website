@@ -15,10 +15,10 @@ import heroHomeMobile from "@/assets/mobilevertficateimage.png";
 import { announcements, calendarEvents, notices } from "@/data/schoolData";
 
 const features = [
-  { icon: BookOpen, title: "Holistic Learning", desc: "Vedic wisdom blended with modern pedagogy for the whole child." },
-  { icon: FlaskConical, title: "STEM Labs", desc: "State-of-the-art laboratories nurturing scientific curiosity." },
-  { icon: Palette, title: "Arts & Sanskrit", desc: "Classical dance, music & language rooted in our culture." },
-  { icon: Trophy, title: "Sportsmanship", desc: "Yoga, kabaddi, cricket — building strength and discipline." },
+  { icon: BookOpen, title: "Supportive Learning", desc: "Balanced teaching, regular guidance, and personal attention for every child." },
+  { icon: FlaskConical, title: "Science Labs", desc: "Well-equipped labs that make science practical, fun, and easy to understand." },
+  { icon: Palette, title: "Arts & Activities", desc: "Music, art, and creative programs that help students express themselves." },
+  { icon: Trophy, title: "Sports & Fitness", desc: "Outdoor games, yoga, and fitness activities for healthy growth." },
 ];
 
 const stats = [
@@ -110,23 +110,38 @@ const Index = () => {
       </section>
 
       {/* Announcements + Upcoming Events */}
-      <section className="container-narrow mt-12 grid md:grid-cols-2 gap-6">
+      <section className="container-narrow mt-12 grid gap-6 md:grid-cols-2">
         {/* Announcements */}
-        <div className="bg-card rounded-2xl border border-gold/20 shadow-soft overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-gold/15">
+        <div className="group overflow-hidden rounded-3xl border border-gold/20 bg-card/90 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-warm">
+          <div className="flex items-center justify-between border-b border-gold/15 px-5 py-4 md:px-6">
             <div className="flex items-center gap-2">
-              <Megaphone className="h-4 w-4 text-primary" />
-              <h3 className="font-display font-semibold text-secondary">Announcements</h3>
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-saffron text-primary-foreground shadow-gold">
+                <Megaphone className="h-4 w-4" />
+              </div>
+              <div>
+                <h3 className="font-display text-xl text-secondary">Announcements</h3>
+                <p className="text-xs text-muted-foreground">Latest circulars and school updates</p>
+              </div>
             </div>
             <Link to="/notices" className="text-xs text-primary hover:underline">View all</Link>
           </div>
-          <ul className="divide-y divide-gold/10">
+          <ul className="p-4 md:p-5 space-y-3">
             {announcements.slice(0, 4).map(a => (
-              <li key={a.id} className="px-5 py-3 flex items-start gap-3">
-                <span className={`mt-1 shrink-0 h-2 w-2 rounded-full ${a.category === "Urgent" ? "bg-red-500" : a.category === "Exam" ? "bg-blue-500" : "bg-primary"}`} />
-                <div>
-                  <p className="text-sm font-medium text-foreground/90 leading-snug">{a.title}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{a.date}</p>
+              <li
+                key={a.id}
+                className="rounded-2xl border border-gold/15 bg-background/70 p-4 transition-colors hover:border-gold/30 hover:bg-background"
+              >
+                <div className="flex items-start gap-3">
+                  <span className={`mt-1 shrink-0 h-2.5 w-2.5 rounded-full ${a.category === "Urgent" ? "bg-red-500" : a.category === "Exam" ? "bg-blue-500" : "bg-primary"}`} />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm md:text-[0.98rem] font-medium text-foreground/90 leading-snug">{a.title}</p>
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-primary">
+                        {a.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{a.date}</span>
+                    </div>
+                  </div>
                 </div>
               </li>
             ))}
@@ -134,26 +149,38 @@ const Index = () => {
         </div>
 
         {/* Upcoming Events */}
-        <div className="bg-card rounded-2xl border border-gold/20 shadow-soft overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-gold/15">
+        <div className="group overflow-hidden rounded-3xl border border-gold/20 bg-card/90 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-warm">
+          <div className="flex items-center justify-between border-b border-gold/15 px-5 py-4 md:px-6">
             <div className="flex items-center gap-2">
-              <CalendarDays className="h-4 w-4 text-primary" />
-              <h3 className="font-display font-semibold text-secondary">Upcoming Events</h3>
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-saffron text-primary-foreground shadow-gold">
+                <CalendarDays className="h-4 w-4" />
+              </div>
+              <div>
+                <h3 className="font-display text-xl text-secondary">Upcoming Events</h3>
+                <p className="text-xs text-muted-foreground">Important dates and school activities</p>
+              </div>
             </div>
             <Link to="/calendar" className="text-xs text-primary hover:underline">Full calendar</Link>
           </div>
-          <ul className="divide-y divide-gold/10">
+          <ul className="p-4 md:p-5 space-y-3">
             {calendarEvents.slice(0, 4).map(e => {
               const d = new Date(e.date);
               return (
-                <li key={e.id} className="px-5 py-3 flex items-center gap-3">
-                  <div className="shrink-0 text-center w-10">
-                    <div className="font-display text-lg font-bold text-primary leading-none">{d.getDate()}</div>
-                    <div className="text-[10px] uppercase text-muted-foreground">{d.toLocaleString("en-IN", { month: "short" })}</div>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-foreground/90 truncate">{e.title}</p>
-                    <span className="text-[10px] uppercase tracking-wide text-muted-foreground">{e.category}</span>
+                <li key={e.id} className="rounded-2xl border border-gold/15 bg-background/70 p-4 transition-colors hover:border-gold/30 hover:bg-background">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 rounded-2xl border border-gold/20 bg-gradient-to-br from-primary/10 to-gold/10 px-3 py-2 text-center min-w-[3.5rem]">
+                      <div className="font-display text-2xl font-bold text-primary leading-none">{d.getDate()}</div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{d.toLocaleString("en-IN", { month: "short" })}</div>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm md:text-[0.98rem] font-medium text-foreground/90 leading-snug">{e.title}</p>
+                      <div className="mt-2 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full bg-secondary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-secondary">
+                          {e.category}
+                        </span>
+                        <span className="text-xs text-muted-foreground">{e.date}</span>
+                      </div>
+                    </div>
                   </div>
                 </li>
               );
@@ -188,13 +215,15 @@ const Index = () => {
 
       {/* Features */}
       <section className="container-narrow py-24 relative overflow-hidden">
-        <MandalaBg className="absolute -right-40 top-20 w-96 h-96" />
-        <SectionHeader
-          eyebrow="॥ गुणाः ॥"
-          title="Pillars of Our School"
-          subtitle="Every petal of the lotus represents a value we cherish — wisdom, health, creativity, and character."
-        />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MandalaBg className="absolute -right-64 -top-20 h-[30rem] w-[30rem] opacity-35 hidden lg:block z-0" />
+        <div className="relative z-10">
+          <SectionHeader
+            eyebrow="Why Choose Us"
+            title="Pillars of Our School"
+            subtitle="A simple, caring school environment where children can learn, grow, and feel confident every day."
+          />
+        </div>
+        <div className="relative z-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
@@ -202,13 +231,33 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group rounded-2xl section-surface p-7 hover:border-gold/60 hover:shadow-warm transition-all duration-300 hover:-translate-y-1"
+              className="group relative h-full overflow-hidden rounded-3xl border border-gold/20 bg-card/90 shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-gold/40 hover:shadow-warm"
             >
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-saffron text-primary-foreground mb-5 shadow-gold group-hover:scale-110 transition-transform">
-                <f.icon className="h-7 w-7" />
+              <div className="h-2 w-full bg-gradient-festive" />
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_90%_10%,hsl(43_88%_55%/0.14),transparent_48%)]" />
+              <div className="relative z-10 flex h-full flex-col p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-saffron text-primary-foreground shadow-gold transition-transform duration-300 group-hover:scale-110">
+                    <f.icon className="h-7 w-7 drop-shadow-[0_1px_0_hsl(0_0%_100%/0.25)]" />
+                  </div>
+                  <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-primary">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <h3 className="mt-5 font-display text-xl md:text-[1.65rem] text-secondary leading-tight">
+                  {f.title}
+                </h3>
+                <p className="mt-3 text-sm md:text-[0.98rem] leading-relaxed text-muted-foreground">
+                  {f.desc}
+                </p>
+
+                <div className="mt-auto pt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
+                  <span className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                  <span>School Life</span>
+                  <span className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                </div>
               </div>
-              <h3 className="font-display text-xl mb-2 text-secondary">{f.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -258,19 +307,26 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="container-narrow pb-20">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-peacock p-10 md:p-16 text-primary-foreground shadow-temple ornate-frame">
-          <MandalaBg className="absolute -right-20 -top-20 w-80 h-80 opacity-30" />
-          <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_10%,hsl(43_88%_55%/0.2)_45%,transparent_80%)] animate-shimmer" />
+      <section className="container-narrow pb-10 md:pb-12">
+        <div className="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,hsl(22_88%_48%)_0%,hsl(38_95%_61%)_42%,hsl(43_95%_84%)_100%)] p-10 md:p-16 text-secondary shadow-temple ornate-frame">
+          <MandalaBg
+            className="absolute -right-20 -top-20 w-80 h-80 opacity-50"
+            style={{
+              filter: "sepia(1) saturate(1.05) hue-rotate(338deg) brightness(0.52) contrast(1.18)",
+              mixBlendMode: "multiply",
+            }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_10%,hsl(43_95%_78%/0.18)_45%,transparent_80%)] animate-shimmer" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,hsl(43_95%_88%/0.20),transparent_34%),radial-gradient(circle_at_85%_0%,hsl(22_88%_52%/0.12),transparent_30%)]" />
           <div className="relative max-w-2xl">
-            <Award className="h-10 w-10 text-gold mb-4" />
+            <Award className="h-10 w-10 text-secondary mb-4" />
             <h3 className="font-display text-3xl md:text-5xl font-bold mb-4">Join the Vidyalaya Parivaar</h3>
             <p className="text-lg opacity-90 mb-8">Admissions open for 2026–27. Walk through our gates and feel the heritage.</p>
             <div className="flex flex-wrap gap-4">
               <Button asChild variant="gold" size="xl">
                 <Link to="/admissions">Apply Today</Link>
               </Button>
-              <Button asChild variant="ornate" size="xl" className="text-primary-foreground border-gold">
+              <Button asChild variant="outline" size="xl" className="border-secondary/20 bg-white/60 text-secondary hover:bg-white/80">
                 <Link to="/contact">Schedule a Visit</Link>
               </Button>
             </div>

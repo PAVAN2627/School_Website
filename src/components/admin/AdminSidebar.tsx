@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, Megaphone, CalendarDays, Info, BookOpen,
   ClipboardList, MessageSquare, FileText, Wallet, LogOut,
-  GraduationCap, X, Menu,
+  GraduationCap, X,
 } from "lucide-react";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 const navItems = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -19,9 +19,13 @@ const navItems = [
   { to: "/admin/fees", label: "Fee Structure", icon: Wallet },
 ];
 
-export const AdminSidebar = () => {
+interface AdminSidebarProps {
+  mobileOpen: boolean;
+  setMobileOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export const AdminSidebar = ({ mobileOpen, setMobileOpen }: AdminSidebarProps) => {
   const navigate = useNavigate();
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("admin-auth");
@@ -84,18 +88,10 @@ export const AdminSidebar = () => {
         <SidebarContent />
       </aside>
 
-      {/* Mobile toggle */}
-      <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-card border border-gold/30 rounded-lg shadow"
-        onClick={() => setMobileOpen(true)}
-      >
-        <Menu className="h-5 w-5" />
-      </button>
-
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-50 flex">
-          <div className="w-60 bg-card h-full shadow-xl">
+          <div className="w-[82vw] max-w-[19rem] bg-card h-full shadow-xl">
             <div className="flex justify-end p-3">
               <button onClick={() => setMobileOpen(false)}>
                 <X className="h-5 w-5" />

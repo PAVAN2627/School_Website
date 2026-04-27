@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { MandalaBg } from "@/components/MandalaBg";
 import { Heart, Eye, Star, Users, Award, Zap, Book, Globe, CheckCircle2 } from "lucide-react";
 import heroAbout from "@/assets/hero-about.jpg";
+import { defaultFacilities, loadAboutFacilities } from "@/lib/aboutContent";
 
 const timeline = [
   { year: "2005", title: "Founding", desc: "Vidyalaya was founded with 60 students and a single banyan tree." },
@@ -19,15 +21,6 @@ const achievements = [
   { icon: Zap, title: "Innovation Hub", desc: "2nd position in National Science Olympiad for three consecutive years." },
 ];
 
-const facilities = [
-  { title: "Smart Classrooms", desc: "Interactive boards, projectors and high-speed internet in every room." },
-  { title: "Science & Tech Labs", desc: "State-of-the-art physics, chemistry, biology and computer labs." },
-  { title: "Sports Complex", desc: "Olympic-standard facilities for cricket, badminton, kabaddi and yoga." },
-  { title: "Digital Library", desc: "50,000+ books, digital archives and e-learning resources." },
-  { title: "Auditorium", desc: "3000-seat capacity venue with sound system for events and performances." },
-  { title: "Cafeteria", desc: "Nutritious meals prepared fresh daily following health guidelines." },
-];
-
 const team = [
   { name: "Dr. Arvind Krishnan", role: "Principal", expertise: "Education & Leadership" },
   { name: "Ms. Priya Sharma", role: "Vice Principal (Academics)", expertise: "Curriculum Design" },
@@ -37,37 +30,95 @@ const team = [
   { name: "Ms. Anjali Verma", role: "Counselor", expertise: "Student Wellbeing" },
 ];
 
-const About = () => (
-  <>
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+
+const About = () => {
+  const [facilities, setFacilities] = useState(defaultFacilities);
+
+  useEffect(() => {
+    setFacilities(loadAboutFacilities());
+  }, []);
+
+  return (
+    <>
     <PageHero
-      title="Our Story"
+      title="About Our Vidyalaya"
       sanskrit="॥ सत्यं शिवं सुन्दरम् ॥"
-      subtitle="Two decades of nurturing children with the wisdom of our ancestors and the tools of tomorrow."
+      subtitle="For over two decades, our school has nurtured character, scholarship, and seva through a joyful blend of Bharatiya tradition and modern learning."
       image={heroAbout}
+      size="full"
     />
 
     {/* Mission Vision Values */}
     <section className="container-narrow py-20 relative">
       <MandalaBg className="absolute left-0 top-10 w-80 h-80 opacity-10" />
-      <div className="grid md:grid-cols-3 gap-6 relative">
+      <div className="relative z-10">
+        <SectionHeader
+          eyebrow="॥ प्रेरणा ॥"
+          title="Mission, Vision & Values"
+          subtitle="The guiding principles behind our classrooms, assemblies, and community life."
+        />
+      </div>
+      <div className="grid gap-6 md:grid-cols-3 relative z-10">
         {[
-          { icon: Heart, title: "Mission", desc: "To nurture holistic excellence through inclusive education that honours our heritage and embraces innovation." },
-          { icon: Eye, title: "Vision", desc: "A future-ready learning community rooted in Indian ethos, shaping global citizens with dharmic values." },
-          { icon: Star, title: "Values", desc: "Respect, Integrity, Curiosity, Compassion — the four pillars of every Vidyalaya child." },
+          {
+            icon: Heart,
+            label: "01",
+            title: "Mission",
+            desc: "To nurture holistic excellence through inclusive education that honours our heritage and embraces innovation.",
+            footer: "Learning with purpose, compassion, and confidence.",
+          },
+          {
+            icon: Eye,
+            label: "02",
+            title: "Vision",
+            desc: "A future-ready learning community rooted in Indian ethos, shaping global citizens with dharmic values.",
+            footer: "Growing students who lead with clarity and character.",
+          },
+          {
+            icon: Star,
+            label: "03",
+            title: "Values",
+            desc: "Respect, Integrity, Curiosity, Compassion — the four pillars of every Vidyalaya child.",
+            footer: "The daily culture that shapes every step.",
+          },
         ].map((m, i) => (
           <motion.div
             key={m.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="rounded-2xl bg-card p-8 border border-gold/30 shadow-soft hover:shadow-warm transition-all"
+            transition={{ delay: i * 0.1, duration: 0.55 }}
+            className="group relative overflow-hidden rounded-3xl section-surface ornate-frame border border-gold/30 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-warm"
           >
-            <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-festive text-primary-foreground mb-5 shadow-warm">
-              <m.icon className="h-7 w-7" />
+            <div className="h-2 w-full bg-gradient-festive" />
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_12%_12%,hsl(43_88%_55%/0.16),transparent_42%)]" />
+            <div className="relative z-10 p-7 md:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-festive text-primary-foreground shadow-warm transition-transform duration-300 group-hover:scale-105">
+                  <m.icon className="h-6 w-6" />
+                </div>
+                <div className="rounded-full border border-gold/30 bg-background/70 px-3 py-1 text-xs font-semibold tracking-[0.22em] text-primary">
+                  {m.label}
+                </div>
+              </div>
+              <h3 className="mt-5 font-display text-2xl md:text-[1.75rem] text-secondary">{m.title}</h3>
+              <p className="mt-3 text-muted-foreground leading-relaxed text-[0.98rem] md:text-base">
+                {m.desc}
+              </p>
+              <div className="mt-6 flex items-center gap-3 rounded-2xl border border-gold/20 bg-background/60 px-4 py-3">
+                <span className="h-2.5 w-2.5 rounded-full bg-gradient-saffron shadow-gold" />
+                <p className="text-sm md:text-[0.95rem] font-medium text-foreground/80">
+                  {m.footer}
+                </p>
+              </div>
             </div>
-            <h3 className="font-display text-2xl text-secondary mb-3">{m.title}</h3>
-            <p className="text-muted-foreground leading-relaxed">{m.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -77,24 +128,26 @@ const About = () => (
     <section className="bg-gradient-temple py-20">
       <div className="container-narrow">
         <SectionHeader eyebrow="॥ इतिहासः ॥" title="Our Journey" subtitle="Milestones along our two-decade path of dharmic education." />
-        <div className="relative max-w-3xl mx-auto">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-gold to-secondary -translate-x-1/2" />
+        <div className="relative mx-auto max-w-4xl pl-8 sm:pl-10">
+          <div className="absolute left-3 top-3 bottom-3 w-px bg-gradient-to-b from-primary via-gold to-secondary" />
           {timeline.map((item, i) => (
-            <motion.div
+            <motion.article
               key={item.year}
-              initial={{ opacity: 0, x: i % 2 ? 30 : -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`relative flex items-start gap-6 mb-10 md:w-1/2 ${i % 2 ? "md:ml-auto md:pl-12" : "md:pr-12 md:text-right md:flex-row-reverse"}`}
+              transition={{ delay: i * 0.08, duration: 0.45 }}
+              className="relative mb-6 last:mb-0"
             >
-              <div className={`absolute top-3 h-4 w-4 rounded-full bg-gradient-saffron shadow-gold ring-4 ring-background ${i % 2 ? "md:-left-2" : "md:-right-2"} left-2 md:left-auto`} />
-              <div className={`pl-12 md:pl-0 ${i % 2 ? "md:pl-0" : ""} flex-1`}>
-                <div className="font-display text-3xl text-primary">{item.year}</div>
-                <h4 className="font-display text-xl text-secondary mt-1 mb-2">{item.title}</h4>
-                <p className="text-muted-foreground">{item.desc}</p>
+              <div className="absolute -left-[1.95rem] top-7 h-4 w-4 rounded-full bg-gradient-saffron shadow-gold ring-4 ring-background" />
+              <div className="rounded-2xl section-surface p-5 md:p-6 border border-gold/30 shadow-soft">
+                <div className="inline-flex rounded-full border border-gold/35 bg-gold/10 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-primary">
+                  YEAR {item.year}
+                </div>
+                <h4 className="font-display text-2xl md:text-3xl text-secondary mt-3 mb-2">{item.title}</h4>
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">{item.desc}</p>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -103,21 +156,38 @@ const About = () => (
     {/* Achievements */}
     <section className="container-narrow py-20 relative">
       <SectionHeader eyebrow="॥ उपलब्धयः ॥" title="Achievements & Recognition" subtitle="Recognized excellence across academics, sports and culture." />
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 relative z-10">
         {achievements.map((achievement, i) => (
           <motion.div
             key={achievement.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="rounded-xl bg-gradient-to-br from-card to-card/50 p-6 border border-gold/20 shadow-soft hover:shadow-warm transition-all"
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            className="group h-full overflow-hidden rounded-3xl border border-gold/20 bg-card/85 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-warm"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-festive text-primary-foreground mb-4 shadow-md">
-              <achievement.icon className="h-6 w-6" />
+            <div className="h-2 w-full bg-gradient-festive" />
+            <div className="flex h-full flex-col p-6 md:p-7">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-festive text-primary-foreground shadow-md transition-transform duration-300 group-hover:scale-105">
+                  <achievement.icon className="h-6 w-6" />
+                </div>
+                <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <h4 className="mt-5 font-display text-xl md:text-[1.65rem] text-secondary leading-tight">
+                {achievement.title}
+              </h4>
+              <p className="mt-3 text-sm md:text-[0.98rem] text-muted-foreground leading-relaxed">
+                {achievement.desc}
+              </p>
+              <div className="mt-auto flex items-center gap-2 pt-6 text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                <span>Recognition</span>
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+              </div>
             </div>
-            <h4 className="font-display text-lg text-secondary mb-2">{achievement.title}</h4>
-            <p className="text-sm text-muted-foreground leading-relaxed">{achievement.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -128,6 +198,25 @@ const About = () => (
     <section className="bg-gradient-temple py-20">
       <div className="container-narrow">
         <SectionHeader eyebrow="॥ सुविधाः ॥" title="Campus Facilities" subtitle="Modern infrastructure designed for holistic learning." />
+        <div className="mb-7 overflow-hidden rounded-2xl border border-gold/30 bg-card/70 p-3 md:p-4 shadow-soft">
+          <div className="facility-image-marquee-track">
+            {[...facilities, ...facilities].map((facility, i) => (
+              <div key={`${facility.title}-${i}`} className="facility-image-marquee-item">
+                <img
+                  src={facility.image}
+                  alt={facility.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="facility-image-marquee-overlay" />
+                <div className="facility-image-marquee-label">
+                  <Book className="h-4 w-4 text-gold" />
+                  <span>{facility.title}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {facilities.map((facility, i) => (
             <motion.div
@@ -135,20 +224,60 @@ const About = () => (
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="rounded-xl bg-card p-6 border border-gold/30 shadow-soft hover:shadow-warm transition-all group"
+              transition={{ delay: i * 0.05, duration: 0.5 }}
+              className="rounded-xl bg-card p-6 border border-gold/30 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-warm group"
             >
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-saffron text-white flex-shrink-0 group-hover:shadow-gold transition-shadow">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-display text-lg text-secondary mb-1">{facility.title}</h4>
+                  <h4 className="font-display text-lg md:text-xl text-secondary mb-1">{facility.title}</h4>
                   <p className="text-sm text-muted-foreground">{facility.desc}</p>
                 </div>
               </div>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Principal */}
+    <section className="bg-gradient-temple py-20">
+      <div className="container-narrow">
+        <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-card shadow-temple">
+          <div className="absolute inset-x-0 top-0 h-2 bg-gradient-festive" />
+          <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
+          <div className="grid gap-0 md:grid-cols-[280px_1fr]">
+            <div className="relative flex items-center justify-center bg-gradient-to-br from-primary/10 via-gold/10 to-secondary/10 p-8 md:p-10">
+              <MandalaBg className="absolute inset-0 w-full h-full opacity-10" />
+              <div className="relative flex flex-col items-center text-center">
+                <div className="flex h-40 w-40 items-center justify-center rounded-full border-4 border-background bg-gradient-festive text-6xl shadow-temple md:h-48 md:w-48">
+                  🙏
+                </div>
+                <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-background/80 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-primary">
+                  PRINCIPAL
+                </div>
+              </div>
+            </div>
+
+            <div className="relative p-8 md:p-12">
+              <Users className="h-8 w-8 text-primary mb-4" />
+              <p className="font-sanskrit text-xl md:text-2xl text-primary mb-4">
+                "आचार्यदेवो भव"
+              </p>
+              <div className="relative">
+                <span className="absolute -left-2 top-0 text-5xl leading-none text-gold/35">“</span>
+                <p className="pl-8 text-lg md:text-2xl text-foreground/85 italic leading-relaxed">
+                  Education is not the filling of a vessel, but the kindling of a flame. At Vidyalaya, we kindle that flame with the oil of tradition and the wick of innovation.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-col gap-1 border-t border-gold/20 pt-5">
+                <div className="font-display text-2xl text-secondary">Dr. Arvind Krishnan</div>
+                <div className="text-sm md:text-base text-muted-foreground">Principal, Vidyalaya</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -163,50 +292,26 @@ const About = () => (
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="rounded-2xl bg-card border border-gold/20 shadow-soft overflow-hidden hover:shadow-warm transition-all group"
+            transition={{ delay: i * 0.1, duration: 0.45 }}
+            className="group rounded-2xl section-surface border border-gold/20 shadow-soft overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-warm"
           >
-            <div className="h-32 bg-gradient-to-r from-primary/20 via-gold/20 to-secondary/20 flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-300">
-              {["👨‍🎓", "👩‍🏫", "👨‍🔬", "👩‍🎨", "🏃‍♂️", "💼"][i]}
+            <div className="h-32 bg-gradient-to-r from-primary/20 via-gold/20 to-secondary/20 flex items-center justify-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-card/80 border border-gold/40 font-display text-2xl text-secondary shadow-soft transition-transform duration-300 group-hover:scale-110">
+                {getInitials(member.name)}
+              </div>
             </div>
             <div className="p-6">
               <h4 className="font-display text-lg text-secondary mb-1">{member.name}</h4>
               <p className="text-sm text-primary font-medium mb-3">{member.role}</p>
-              <p className="text-xs text-muted-foreground">{member.expertise}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{member.expertise}</p>
             </div>
           </motion.div>
         ))}
       </div>
       <MandalaBg className="absolute left-0 bottom-10 w-80 h-80 opacity-5" />
     </section>
-
-    {/* Principal */}
-    <section className="bg-gradient-temple py-20">
-      <div className="container-narrow">
-        <div className="rounded-3xl bg-card border border-gold/30 shadow-temple p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center">
-          <div className="md:col-span-1 flex justify-center">
-            <div className="relative">
-              <MandalaBg className="absolute inset-0 w-full h-full" />
-              <div className="relative h-48 w-48 rounded-full bg-gradient-festive flex items-center justify-center text-6xl shadow-temple">
-                🙏
-              </div>
-            </div>
-          </div>
-          <div className="md:col-span-2">
-            <Users className="h-8 w-8 text-primary mb-3" />
-            <p className="font-sanskrit text-xl text-primary mb-3">
-              "आचार्यदेवो भव"
-            </p>
-            <p className="text-lg text-foreground/85 italic leading-relaxed mb-4">
-              "Education is not the filling of a vessel, but the kindling of a flame. At Vidyalaya, we kindle that flame with the oil of tradition and the wick of innovation."
-            </p>
-            <div className="font-display text-xl text-secondary">Dr. Arvind Krishnan</div>
-            <div className="text-sm text-muted-foreground">Principal, Vidyalaya</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </>
-);
+    </>
+  );
+};
 
 export default About;
