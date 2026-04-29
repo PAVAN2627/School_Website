@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { registerUser,
+import {
+  changeCurrentPassword,
+  getUser,
   loginUser,
   logoutUser,
-  getUser,
-  changeCurrentPassword,
+  registerUser,
   updateUserProfile
- } from "../controller/user.controller.js";
+} from "../controller/user.controller.js";
 import {
   authChangeCurrentPasswordValidator,
   authloginValidator,

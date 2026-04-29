@@ -1,9 +1,9 @@
-import asyncHandler from '../utils/asyncHandler.js';
-import ApiResponse from '../utils/ApiResponse.js';
 import User from '../models/user.model.js';
 import ApiError from '../utils/ApiError.js';
+import ApiResponse from '../utils/ApiResponse.js';
+import asyncHandler from '../utils/asyncHandler.js';
 import { userRoles } from '../utils/constant.js';
-import { fieldNotFound, userNotFound } from '../utils/helper.js';
+import { fieldNotFound } from '../utils/helper.js';
 
 
 const options = {
@@ -133,7 +133,7 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
   { new: true, runValidators: true }
     );
 
-    
+
 
   return res.status(200).json(new ApiResponse(200,{}, "User fileds udpate successfully"))
 })
@@ -163,11 +163,7 @@ const changeCurrentPassword = asyncHandler(async(req,res) => {
 
 
 
-export  {
-  registerUser,
-  loginUser,
-  logoutUser,
-  getUser,
-  changeCurrentPassword,
-  updateUserProfile
-}
+export {
+  changeCurrentPassword, getUser, loginUser,
+  logoutUser, registerUser, updateUserProfile
+};

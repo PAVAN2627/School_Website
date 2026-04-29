@@ -21,3 +21,23 @@ export const announcementCategory = {
 }
 
 export const announcementCategoryEnums = Object.values(announcementCategory)
+
+export const eventCategory = {
+  EVENT  : "Event",
+  RESULT : "Result",
+  EXAM : "Exam",
+  HOLIDAY : "Holiday",
+  MEETING : "Meeting",
+  LEAVE : "Leave"
+}
+
+export const eventCategoryEnums = Object.values(eventCategory)
+
+
+
+
+
+
+
+
+//
