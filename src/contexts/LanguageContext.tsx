@@ -51,8 +51,44 @@ type TranslationKey =
   | "cal.filterMeeting" | "cal.filterEvent" | "cal.filterLeave"
   | "cal.until" | "cal.noEvents"
   | "cal.cta.title" | "cal.cta.sub"
+  // notices page
+  | "notices.heroTitle" | "notices.heroSubtitle"
+  | "notices.sectionTitle" | "notices.sectionSub"
+  | "notices.filterAll" | "notices.filterSchool" | "notices.filterGovt" | "notices.filterUrgent"
+  | "notices.download" | "notices.noNotices"
   // footer
   | "footer.tagline" | "footer.quicklinks" | "footer.visit" | "footer.copyright" | "footer.blessing"
+  // about page
+  | "about.heroTitle" | "about.heroSanskrit" | "about.heroSubtitle"
+  | "about.mvv.eyebrow" | "about.mvv.title" | "about.mvv.subtitle"
+  | "about.mission.title" | "about.mission.desc" | "about.mission.footer"
+  | "about.vision.title" | "about.vision.desc" | "about.vision.footer"
+  | "about.values.title" | "about.values.desc" | "about.values.footer"
+  | "about.timeline.eyebrow" | "about.timeline.title" | "about.timeline.subtitle"
+  | "about.timeline.2005.title" | "about.timeline.2005.desc"
+  | "about.timeline.2012.title" | "about.timeline.2012.desc"
+  | "about.timeline.2018.title" | "about.timeline.2018.desc"
+  | "about.timeline.2023.title" | "about.timeline.2023.desc"
+  | "about.achievements.eyebrow" | "about.achievements.title" | "about.achievements.subtitle"
+  | "about.achievement1.title" | "about.achievement1.desc"
+  | "about.achievement2.title" | "about.achievement2.desc"
+  | "about.achievement3.title" | "about.achievement3.desc"
+  | "about.achievement4.title" | "about.achievement4.desc"
+  | "about.facilities.eyebrow" | "about.facilities.title" | "about.facilities.subtitle"
+  | "about.facility1.title" | "about.facility1.desc"
+  | "about.facility2.title" | "about.facility2.desc"
+  | "about.facility3.title" | "about.facility3.desc"
+  | "about.facility4.title" | "about.facility4.desc"
+  | "about.facility5.title" | "about.facility5.desc"
+  | "about.facility6.title" | "about.facility6.desc"
+  | "about.principal.quote" | "about.principal.name" | "about.principal.role"
+  | "about.team.eyebrow" | "about.team.title" | "about.team.subtitle"
+  | "about.team1.name" | "about.team1.role" | "about.team1.expertise"
+  | "about.team2.name" | "about.team2.role" | "about.team2.expertise"
+  | "about.team3.name" | "about.team3.role" | "about.team3.expertise"
+  | "about.team4.name" | "about.team4.role" | "about.team4.expertise"
+  | "about.team5.name" | "about.team5.role" | "about.team5.expertise"
+  | "about.team6.name" | "about.team6.role" | "about.team6.expertise"
   // ── Academics ──────────────────────────────────────────────────────────────
   | "academics.heroTitle" | "academics.heroSubtitle"
   | "academics.statsPassRate" | "academics.statsUniversity" | "academics.statsExperts" | "academics.statsOlympiad"
@@ -209,6 +245,82 @@ const messages: Record<Language, Record<TranslationKey, string>> = {
     "cal.noEvents": "No events in this category.",
     "cal.cta.title": "Stay in the Loop",
     "cal.cta.sub": "Subscribe for monthly newsletter with calendar updates, photo highlights and parent notes.",
+    // notices
+    "notices.heroTitle": "Notices & Circulars",
+    "notices.heroSubtitle": "Official school notices, government circulars and urgent announcements — all in one place.",
+    "notices.sectionTitle": "Latest Notices",
+    "notices.sectionSub": "Stay informed with the latest updates from school administration and government.",
+    "notices.filterAll": "All",
+    "notices.filterSchool": "School Notice",
+    "notices.filterGovt": "Government Notice",
+    "notices.filterUrgent": "Urgent Notice",
+    "notices.download": "Download PDF",
+    "notices.noNotices": "No notices in this category.",
+    // about page
+    "about.heroTitle": "About Vidyalaya",
+    "about.heroSanskrit": "॥ सा विद्या या विमुक्तये ॥",
+    "about.heroSubtitle": "A school rooted in Bharatiya values, nurturing curious minds and noble hearts since 2005.",
+    "about.mvv.eyebrow": "Our Foundation",
+    "about.mvv.title": "Mission, Vision & Values",
+    "about.mvv.subtitle": "The three pillars that guide everything we do at Vidyalaya.",
+    "about.mission.title": "Our Mission",
+    "about.mission.desc": "To nurture curious minds and noble hearts through a blend of modern education and ancient wisdom.",
+    "about.mission.footer": "Holistic education for every child",
+    "about.vision.title": "Our Vision",
+    "about.vision.desc": "To be the leading institution that produces well-rounded, culturally grounded, and globally competent citizens.",
+    "about.vision.footer": "Global citizens with Indian roots",
+    "about.values.title": "Our Values",
+    "about.values.desc": "Integrity, Respect, Excellence, Service and Cultural Pride form the bedrock of our school community.",
+    "about.values.footer": "Character before career",
+    "about.timeline.eyebrow": "Our Journey",
+    "about.timeline.title": "Two Decades of Excellence",
+    "about.timeline.subtitle": "From a small school to a thriving institution — our story of growth.",
+    "about.timeline.2005.title": "Vidyalaya Founded",
+    "about.timeline.2005.desc": "Established with 120 students and a vision to blend Bharatiya values with modern education.",
+    "about.timeline.2012.title": "Campus Expansion",
+    "about.timeline.2012.desc": "New science labs, sports complex and digital library added to serve our growing community.",
+    "about.timeline.2018.title": "Board Excellence Award",
+    "about.timeline.2018.desc": "Recognised by the state board for 100% pass rate and outstanding student achievements.",
+    "about.timeline.2023.title": "2400+ Students Strong",
+    "about.timeline.2023.desc": "Today we proudly serve over 2400 students with 180+ dedicated faculty members.",
+    "about.achievements.eyebrow": "Recognition",
+    "about.achievements.title": "Awards & Achievements",
+    "about.achievements.subtitle": "Milestones that reflect our commitment to excellence.",
+    "about.achievement1.title": "State Board Topper",
+    "about.achievement1.desc": "Our students have topped the state board examinations for 5 consecutive years.",
+    "about.achievement2.title": "Best School Award",
+    "about.achievement2.desc": "Awarded Best School in Cultural Education by the State Education Department.",
+    "about.achievement3.title": "International Olympiad",
+    "about.achievement3.desc": "15 students represented India in international science and mathematics olympiads.",
+    "about.achievement4.title": "Green Campus",
+    "about.achievement4.desc": "Certified as a Green Campus for our solar energy and waste management initiatives.",
+    "about.facilities.eyebrow": "Infrastructure",
+    "about.facilities.title": "World-Class Facilities",
+    "about.facilities.subtitle": "Modern infrastructure designed to inspire learning and creativity.",
+    "about.facility1.title": "Smart Classrooms",
+    "about.facility1.desc": "Interactive boards, projectors and high-speed internet in every room.",
+    "about.facility2.title": "Science & Tech Labs",
+    "about.facility2.desc": "State-of-the-art physics, chemistry, biology and computer labs.",
+    "about.facility3.title": "Sports Complex",
+    "about.facility3.desc": "Olympic-standard facilities for cricket, badminton, kabaddi and yoga.",
+    "about.facility4.title": "Digital Library",
+    "about.facility4.desc": "50,000+ books, digital archives and e-learning resources.",
+    "about.facility5.title": "Auditorium",
+    "about.facility5.desc": "3000-seat capacity venue for events, performances and assemblies.",
+    "about.facility6.title": "Cafeteria",
+    "about.facility6.desc": "Nutritious meals prepared fresh daily following health guidelines.",
+    "about.principal.quote": "Education is not just about academics — it is about shaping character, building resilience, and igniting the spirit of inquiry in every child.",
+    "about.principal.name": "Dr. Arvind Krishnan",
+    "about.principal.role": "Principal, Vidyalaya — since 2005",
+    "about.team.eyebrow": "Leadership",
+    "about.team.title": "Meet Our Team",
+    "about.team.subtitle": "Dedicated educators who bring passion and expertise to every classroom.",
+    "about.team1.name": "Dr. Arvind Krishnan", "about.team1.role": "Principal", "about.team1.expertise": "20+ years in education leadership and curriculum design.",
+    "about.team2.name": "Mrs. Sunita Rao",     "about.team2.role": "Vice Principal", "about.team2.expertise": "Expert in student counselling and holistic development.",
+    "about.team3.name": "Mr. Rajan Pillai",    "about.team3.role": "Head of Sciences", "about.team3.expertise": "PhD in Physics, national olympiad mentor.",
+    "about.team4.name": "Ms. Priya Nair",      "about.team4.role": "Head of Arts", "about.team4.expertise": "Classical dancer and cultural programme director.",
+    "about.team5.name": "Mr. Suresh Kumar",    "about.team5.role": "Sports Director", "about.team5.expertise": "Former national kabaddi player and fitness coach.",
+    "about.team6.name": "Mrs. Kavitha Menon",  "about.team6.role": "Head of Languages", "about.team6.expertise": "Sanskrit scholar and multilingual education specialist.",
     // footer
     "footer.tagline": "Where ancient wisdom meets modern learning. Nurturing every child with the rich heritage of Bharat.",
     "footer.quicklinks": "Quick Links",
@@ -401,6 +513,82 @@ const messages: Record<Language, Record<TranslationKey, string>> = {
     "cal.noEvents": "इस श्रेणी में कोई कार्यक्रम नहीं।",
     "cal.cta.title": "अपडेट रहें",
     "cal.cta.sub": "कैलेंडर अपडेट, फोटो हाइलाइट्स और अभिभावक नोट्स के साथ मासिक न्यूज़लेटर के लिए सदस्यता लें।",
+    // notices
+    "notices.heroTitle": "सूचनाएं एवं परिपत्र",
+    "notices.heroSubtitle": "आधिकारिक विद्यालय सूचनाएं, सरकारी परिपत्र और अत्यावश्यक घोषणाएं — सब एक जगह।",
+    "notices.sectionTitle": "नवीनतम सूचनाएं",
+    "notices.sectionSub": "विद्यालय प्रशासन और सरकार के नवीनतम अपडेट से अवगत रहें।",
+    "notices.filterAll": "सभी",
+    "notices.filterSchool": "विद्यालय सूचना",
+    "notices.filterGovt": "सरकारी सूचना",
+    "notices.filterUrgent": "अत्यावश्यक सूचना",
+    "notices.download": "PDF डाउनलोड करें",
+    "notices.noNotices": "इस श्रेणी में कोई सूचना नहीं।",
+    // about page
+    "about.heroTitle": "विद्यालय के बारे में",
+    "about.heroSanskrit": "॥ सा विद्या या विमुक्तये ॥",
+    "about.heroSubtitle": "2005 से भारतीय मूल्यों में निहित एक विद्यालय, जो जिज्ञासु मन और उदार हृदय का पोषण करता है।",
+    "about.mvv.eyebrow": "हमारी नींव",
+    "about.mvv.title": "मिशन, दृष्टि और मूल्य",
+    "about.mvv.subtitle": "तीन स्तंभ जो विद्यालय में हम जो कुछ भी करते हैं उसका मार्गदर्शन करते हैं।",
+    "about.mission.title": "हमारा मिशन",
+    "about.mission.desc": "आधुनिक शिक्षा और प्राचीन ज्ञान के मिश्रण से जिज्ञासु मन और उदार हृदय का पोषण करना।",
+    "about.mission.footer": "हर बच्चे के लिए समग्र शिक्षा",
+    "about.vision.title": "हमारी दृष्टि",
+    "about.vision.desc": "एक ऐसी अग्रणी संस्था बनना जो सर्वांगीण, सांस्कृतिक रूप से समृद्ध और वैश्विक रूप से सक्षम नागरिक तैयार करे।",
+    "about.vision.footer": "भारतीय जड़ों वाले वैश्विक नागरिक",
+    "about.values.title": "हमारे मूल्य",
+    "about.values.desc": "सत्यनिष्ठा, सम्मान, उत्कृष्टता, सेवा और सांस्कृतिक गर्व हमारे विद्यालय समुदाय की आधारशिला हैं।",
+    "about.values.footer": "करियर से पहले चरित्र",
+    "about.timeline.eyebrow": "हमारी यात्रा",
+    "about.timeline.title": "उत्कृष्टता के दो दशक",
+    "about.timeline.subtitle": "एक छोटे विद्यालय से एक समृद्ध संस्था तक — हमारी विकास की कहानी।",
+    "about.timeline.2005.title": "विद्यालय की स्थापना",
+    "about.timeline.2005.desc": "120 विद्यार्थियों के साथ स्थापित, भारतीय मूल्यों को आधुनिक शिक्षा से जोड़ने की दृष्टि के साथ।",
+    "about.timeline.2012.title": "परिसर विस्तार",
+    "about.timeline.2012.desc": "बढ़ते समुदाय की सेवा के लिए नई विज्ञान प्रयोगशालाएं, खेल परिसर और डिजिटल पुस्तकालय जोड़े गए।",
+    "about.timeline.2018.title": "बोर्ड उत्कृष्टता पुरस्कार",
+    "about.timeline.2018.desc": "100% उत्तीर्ण दर और उत्कृष्ट छात्र उपलब्धियों के लिए राज्य बोर्ड द्वारा मान्यता प्राप्त।",
+    "about.timeline.2023.title": "2400+ विद्यार्थी",
+    "about.timeline.2023.desc": "आज हम 180+ समर्पित शिक्षकों के साथ 2400 से अधिक विद्यार्थियों की सेवा करते हैं।",
+    "about.achievements.eyebrow": "मान्यता",
+    "about.achievements.title": "पुरस्कार और उपलब्धियां",
+    "about.achievements.subtitle": "मील के पत्थर जो उत्कृष्टता के प्रति हमारी प्रतिबद्धता को दर्शाते हैं।",
+    "about.achievement1.title": "राज्य बोर्ड टॉपर",
+    "about.achievement1.desc": "हमारे विद्यार्थियों ने लगातार 5 वर्षों तक राज्य बोर्ड परीक्षाओं में शीर्ष स्थान प्राप्त किया।",
+    "about.achievement2.title": "सर्वश्रेष्ठ विद्यालय पुरस्कार",
+    "about.achievement2.desc": "राज्य शिक्षा विभाग द्वारा सांस्कृतिक शिक्षा में सर्वश्रेष्ठ विद्यालय का पुरस्कार।",
+    "about.achievement3.title": "अंतर्राष्ट्रीय ओलंपियाड",
+    "about.achievement3.desc": "15 विद्यार्थियों ने अंतर्राष्ट्रीय विज्ञान और गणित ओलंपियाड में भारत का प्रतिनिधित्व किया।",
+    "about.achievement4.title": "हरित परिसर",
+    "about.achievement4.desc": "सौर ऊर्जा और अपशिष्ट प्रबंधन पहल के लिए हरित परिसर प्रमाणित।",
+    "about.facilities.eyebrow": "बुनियादी ढांचा",
+    "about.facilities.title": "विश्वस्तरीय सुविधाएं",
+    "about.facilities.subtitle": "सीखने और रचनात्मकता को प्रेरित करने के लिए डिज़ाइन किया गया आधुनिक बुनियादी ढांचा।",
+    "about.facility1.title": "स्मार्ट कक्षाएं",
+    "about.facility1.desc": "हर कमरे में इंटरैक्टिव बोर्ड, प्रोजेक्टर और हाई-स्पीड इंटरनेट।",
+    "about.facility2.title": "विज्ञान एवं तकनीक प्रयोगशालाएं",
+    "about.facility2.desc": "अत्याधुनिक भौतिकी, रसायन, जीव विज्ञान और कंप्यूटर प्रयोगशालाएं।",
+    "about.facility3.title": "खेल परिसर",
+    "about.facility3.desc": "क्रिकेट, बैडमिंटन, कबड्डी और योग के लिए ओलंपिक स्तर की सुविधाएं।",
+    "about.facility4.title": "डिजिटल पुस्तकालय",
+    "about.facility4.desc": "50,000+ पुस्तकें, डिजिटल अभिलेखागार और ई-लर्निंग संसाधन।",
+    "about.facility5.title": "सभागार",
+    "about.facility5.desc": "कार्यक्रमों, प्रदर्शनों और सभाओं के लिए 3000 सीटों की क्षमता वाला स्थान।",
+    "about.facility6.title": "कैफेटेरिया",
+    "about.facility6.desc": "स्वास्थ्य दिशानिर्देशों के अनुसार प्रतिदिन ताजा पौष्टिक भोजन।",
+    "about.principal.quote": "शिक्षा केवल अकादमिक नहीं है — यह चरित्र निर्माण, लचीलापन बनाने और हर बच्चे में जिज्ञासा की भावना जगाने के बारे में है।",
+    "about.principal.name": "डॉ. अरविंद कृष्णन",
+    "about.principal.role": "प्रधानाचार्य, विद्यालय — 2005 से",
+    "about.team.eyebrow": "नेतृत्व",
+    "about.team.title": "हमारी टीम से मिलें",
+    "about.team.subtitle": "समर्पित शिक्षक जो हर कक्षा में जुनून और विशेषज्ञता लाते हैं।",
+    "about.team1.name": "डॉ. अरविंद कृष्णन", "about.team1.role": "प्रधानाचार्य", "about.team1.expertise": "शिक्षा नेतृत्व और पाठ्यक्रम डिजाइन में 20+ वर्ष।",
+    "about.team2.name": "श्रीमती सुनीता राव", "about.team2.role": "उप-प्रधानाचार्य", "about.team2.expertise": "छात्र परामर्श और समग्र विकास में विशेषज्ञ।",
+    "about.team3.name": "श्री राजन पिल्लई",   "about.team3.role": "विज्ञान प्रमुख", "about.team3.expertise": "भौतिकी में पीएचडी, राष्ट्रीय ओलंपियाड मेंटर।",
+    "about.team4.name": "सुश्री प्रिया नायर",  "about.team4.role": "कला प्रमुख", "about.team4.expertise": "शास्त्रीय नृत्यांगना और सांस्कृतिक कार्यक्रम निदेशक।",
+    "about.team5.name": "श्री सुरेश कुमार",    "about.team5.role": "खेल निदेशक", "about.team5.expertise": "पूर्व राष्ट्रीय कबड्डी खिलाड़ी और फिटनेस कोच।",
+    "about.team6.name": "श्रीमती कविता मेनन",  "about.team6.role": "भाषा प्रमुख", "about.team6.expertise": "संस्कृत विद्वान और बहुभाषी शिक्षा विशेषज्ञ।",
     // footer
     "footer.tagline": "जहाँ प्राचीन ज्ञान आधुनिक शिक्षा से मिलता है। भारत की समृद्ध विरासत के साथ हर बच्चे का पोषण।",
     "footer.quicklinks": "त्वरित लिंक",
