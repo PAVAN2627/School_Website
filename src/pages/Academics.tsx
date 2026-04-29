@@ -34,41 +34,41 @@ const pillarsMeta = [
   {
     num: "01", devanagari: "१",
     accent: "hsl(38 95% 58%)",
-    accentClass: "text-amber-400",
-    borderClass: "border-amber-400/25",
-    glowClass: "from-amber-500/20",
+    accentClass: "text-amber-500",
+    borderClass: "border-amber-400/30",
+    glowClass: "from-amber-500/10",
     barClass: "from-amber-400 to-orange-500",
-    tagClass: "bg-amber-400/10 text-amber-300 border-amber-400/20",
+    tagClass: "bg-amber-100 text-amber-700 border-amber-200",
     tag: "Critical Thinking",
   },
   {
     num: "02", devanagari: "२",
     accent: "hsl(22 88% 58%)",
-    accentClass: "text-orange-400",
-    borderClass: "border-orange-400/25",
-    glowClass: "from-orange-500/20",
+    accentClass: "text-orange-500",
+    borderClass: "border-orange-400/30",
+    glowClass: "from-orange-500/10",
     barClass: "from-primary to-orange-400",
-    tagClass: "bg-orange-400/10 text-orange-300 border-orange-400/20",
+    tagClass: "bg-orange-100 text-orange-700 border-orange-200",
     tag: "STEM",
   },
   {
     num: "03", devanagari: "३",
     accent: "hsl(340 70% 60%)",
-    accentClass: "text-rose-400",
-    borderClass: "border-rose-400/25",
-    glowClass: "from-rose-500/20",
+    accentClass: "text-rose-500",
+    borderClass: "border-rose-400/30",
+    glowClass: "from-rose-500/10",
     barClass: "from-secondary to-rose-500",
-    tagClass: "bg-rose-400/10 text-rose-300 border-rose-400/20",
+    tagClass: "bg-rose-100 text-rose-700 border-rose-200",
     tag: "Creative",
   },
   {
     num: "04", devanagari: "४",
     accent: "hsl(43 88% 60%)",
-    accentClass: "text-gold",
-    borderClass: "border-gold/25",
-    glowClass: "from-gold/20",
+    accentClass: "text-amber-600",
+    borderClass: "border-gold/30",
+    glowClass: "from-gold/10",
     barClass: "from-gold to-amber-400",
-    tagClass: "bg-gold/10 text-yellow-300 border-gold/20",
+    tagClass: "bg-yellow-100 text-yellow-700 border-yellow-200",
     tag: "Culture",
   },
 ] as const;
@@ -140,7 +140,7 @@ const Academics = () => {
       />
 
       {/* ── Stats Bar ── */}
-      <section className="container-narrow -mt-10 relative z-20">
+      <section className="container-narrow mt-10 md:mt-14 relative z-10">
         <div className="rounded-3xl border border-gold/30 bg-card shadow-temple overflow-hidden">
           {/* Top festive bar */}
           <div className="h-1 w-full bg-gradient-festive" />
@@ -170,16 +170,16 @@ const Academics = () => {
 
       {/* ── Four Pillars ── */}
       <section className="relative py-24 overflow-hidden">
-        {/* Dark rich background */}
-        <div className="absolute inset-0 bg-[hsl(20_35%_18%)]" />
+        {/* Light warm background */}
+        <div className="absolute inset-0 bg-[hsl(38_55%_95%)]" />
         {/* Saffron radial bloom */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[hsl(22_88%_52%/0.13)] blur-[100px] pointer-events-none" />
-        {/* Fine grid */}
-        <div className="absolute inset-0 opacity-[0.035]"
-          style={{ backgroundImage: "linear-gradient(hsl(43 78% 52%) 1px,transparent 1px),linear-gradient(90deg,hsl(43 78% 52%) 1px,transparent 1px)", backgroundSize: "52px 52px" }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[hsl(22_88%_52%/0.08)] blur-[100px] pointer-events-none" />
+        {/* Faint dot texture */}
+        <div className="absolute inset-0 opacity-[0.045]"
+          style={{ backgroundImage: "radial-gradient(hsl(22 88% 45%) 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
         {/* Gold rules */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-50" />
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-30" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
         <div className="container-narrow relative z-10">
 
@@ -191,18 +191,18 @@ const Academics = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 font-sanskrit text-xs tracking-[0.22em] text-gold mb-5">
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 font-sanskrit text-xs tracking-[0.22em] text-primary mb-5">
               {t("academics.pillarsEyebrow")}
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-secondary leading-tight">
               {t("academics.pillarsTitle")}
             </h2>
             <div className="mt-5 flex items-center justify-center gap-3">
               <span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/60" />
-              <span className="text-gold text-base">✦</span>
+              <span className="text-primary text-base">✦</span>
               <span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/60" />
             </div>
-            <p className="mt-5 text-white/60 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-5 text-muted-foreground max-w-xl mx-auto leading-relaxed">
               {t("academics.pillarsSubtitle")}
             </p>
           </motion.div>
@@ -218,8 +218,8 @@ const Academics = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.13, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className={`group relative flex flex-col overflow-hidden rounded-2xl border ${m.borderClass} bg-white/[0.07] backdrop-blur-sm hover:bg-white/[0.11] hover:-translate-y-2 transition-all duration-400`}
-                  style={{ boxShadow: `0 0 0 1px ${m.accent}22, 0 8px 40px hsl(20 40% 4% / 0.6)` }}
+                  className={`group relative flex flex-col overflow-hidden rounded-2xl border ${m.borderClass} bg-white shadow-[0_2px_16px_hsl(43_78%_52%/0.10)] hover:shadow-[0_8px_32px_hsl(43_78%_52%/0.18)] hover:-translate-y-2 transition-all duration-300`}
+                  style={{ boxShadow: `0 0 0 1px ${m.accent}30, 0 4px 20px hsl(43 78% 52% / 0.08)` }}
                 >
                   {/* Accent top bar */}
                   <div className={`h-[3px] w-full shrink-0 bg-gradient-to-r ${m.barClass}`} />
@@ -247,7 +247,7 @@ const Academics = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-display text-xl md:text-2xl text-white mb-3 leading-snug">
+                    <h3 className="font-display text-xl md:text-2xl text-secondary mb-3 leading-snug">
                       {p.title}
                     </h3>
 
@@ -263,13 +263,13 @@ const Academics = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-sm text-white/60 leading-relaxed flex-1">
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                       {p.desc}
                     </p>
 
                     {/* Bottom step number */}
-                    <div className="mt-6 pt-4 border-t border-white/[0.07] flex items-center justify-between">
-                      <span className="text-[10px] font-semibold tracking-[0.2em] text-white/25 uppercase">
+                    <div className="mt-6 pt-4 border-t border-gold/15 flex items-center justify-between">
+                      <span className="text-[10px] font-semibold tracking-[0.2em] text-muted-foreground/60 uppercase">
                         Pillar {m.num}
                       </span>
                       <div className={`h-6 w-6 rounded-full border ${m.borderClass} flex items-center justify-center`}>

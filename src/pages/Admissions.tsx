@@ -206,17 +206,14 @@ const Admissions = () => {
 
       {/* ── Process Steps ── */}
       <section className="relative py-24 overflow-hidden">
-        {/* Deep rich background */}
-        <div className="absolute inset-0 bg-[hsl(20_35%_18%)]" />
-        {/* Radial saffron glow — top center */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[340px] rounded-full bg-[hsl(22_88%_52%/0.15)] blur-[80px] pointer-events-none" />
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "linear-gradient(hsl(43 78% 52%) 1px,transparent 1px),linear-gradient(90deg,hsl(43 78% 52%) 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-        {/* Top gold rule */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-60" />
-        {/* Bottom gold rule */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-40" />
+        {/* Light warm background */}
+        <div className="absolute inset-0 bg-[hsl(38_55%_95%)]" />
+        {/* Faint dot texture */}
+        <div className="absolute inset-0 opacity-[0.045]"
+          style={{ backgroundImage: "radial-gradient(hsl(22 88% 45%) 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
+        {/* Gold rules */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
         <div className="container-narrow relative z-10">
 
@@ -228,18 +225,18 @@ const Admissions = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 font-sanskrit text-xs tracking-[0.22em] text-gold mb-5">
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 font-sanskrit text-xs tracking-[0.22em] text-primary mb-5">
               {t("admissions.stepsEyebrow")}
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-secondary leading-tight">
               {t("admissions.stepsTitle")}
             </h2>
             <div className="mt-5 flex items-center justify-center gap-3">
               <span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/60" />
-              <span className="text-gold text-base">✦</span>
+              <span className="text-primary text-base">✦</span>
               <span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/60" />
             </div>
-            <p className="mt-5 text-white/60 max-w-xl mx-auto leading-relaxed text-base">
+            <p className="mt-5 text-muted-foreground max-w-xl mx-auto leading-relaxed text-base">
               {t("admissions.stepsSubtitle")}
             </p>
           </motion.div>
@@ -253,8 +250,8 @@ const Admissions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.13, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.07] backdrop-blur-sm hover:bg-white/[0.11] hover:-translate-y-1.5 transition-all duration-300"
-                style={{ boxShadow: `0 0 0 1px ${s.accentBorder}, 0 8px 32px hsl(20 40% 5% / 0.5)` }}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-gold/25 bg-white shadow-[0_2px_16px_hsl(43_78%_52%/0.08)] hover:shadow-[0_8px_32px_hsl(43_78%_52%/0.16)] hover:-translate-y-1.5 transition-all duration-300"
+                style={{ boxShadow: `0 0 0 1px ${s.accentBorder}, 0 4px 16px hsl(43 78% 52% / 0.08)` }}
               >
                 {/* Accent top bar */}
                 <div
@@ -307,7 +304,7 @@ const Admissions = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-display text-xl text-white mb-2 leading-snug">
+                  <h3 className="font-display text-xl text-secondary mb-2 leading-snug">
                     {t(`admissions.step${i + 1}Title`)}
                   </h3>
 
@@ -315,14 +312,14 @@ const Admissions = () => {
                   <div className="w-8 h-px mb-3" style={{ background: s.accent, opacity: 0.4 }} />
 
                   {/* Description */}
-                  <p className="text-sm text-white/60 leading-relaxed flex-1">
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                     {t(`admissions.step${i + 1}Desc`)}
                   </p>
 
                   {/* Connector arrow (not last, desktop) */}
                   {i < stepsMeta.length - 1 && (
-                    <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[hsl(20_40%_14%)]">
-                      <svg className="h-3 w-3 text-gold/60" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 h-6 w-6 items-center justify-center rounded-full border border-gold/30 bg-white shadow-soft">
+                      <svg className="h-3 w-3 text-primary/60" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -341,10 +338,10 @@ const Admissions = () => {
             className="mt-12 flex items-center justify-center gap-4"
           >
             <span className="h-px w-14 bg-gradient-to-r from-transparent to-gold/40" />
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/10 px-5 py-2 text-xs font-medium text-gold/80 tracking-wide">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold/60 animate-pulse" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-white px-5 py-2 text-xs font-medium text-primary shadow-[0_2px_8px_hsl(43_78%_52%/0.12)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse" />
               Entire process takes 2–3 weeks
-              <span className="h-1.5 w-1.5 rounded-full bg-gold/60 animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse" />
             </span>
             <span className="h-px w-14 bg-gradient-to-l from-transparent to-gold/40" />
           </motion.div>
@@ -354,12 +351,11 @@ const Admissions = () => {
 
       {/* ── Why Choose Us ── */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[hsl(20_35%_18%)]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-[hsl(22_88%_52%/0.12)] blur-[90px] pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.035]"
-          style={{ backgroundImage: "linear-gradient(hsl(43 78% 52%) 1px,transparent 1px),linear-gradient(90deg,hsl(43 78% 52%) 1px,transparent 1px)", backgroundSize: "52px 52px" }} />
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-50" />
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-30" />
+        <div className="absolute inset-0 bg-gradient-temple" />
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(hsl(22 88% 45%) 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
         <div className="container-narrow relative z-10">
           {/* Header */}
@@ -370,18 +366,18 @@ const Admissions = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-14"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 font-sanskrit text-xs tracking-[0.22em] text-gold mb-5">
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 font-sanskrit text-xs tracking-[0.22em] text-primary mb-5">
               {t("admissions.whyEyebrow")}
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-secondary leading-tight">
               {t("admissions.whyTitle")}
             </h2>
             <div className="mt-5 flex items-center justify-center gap-3">
               <span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/60" />
-              <span className="text-gold text-base">✦</span>
+              <span className="text-primary text-base">✦</span>
               <span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/60" />
             </div>
-            <p className="mt-4 text-white/55 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
               {t("admissions.whySubtitle")}
             </p>
           </motion.div>
@@ -394,20 +390,20 @@ const Admissions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className={`group relative overflow-hidden rounded-2xl border border-white/[0.10] bg-white/[0.07] backdrop-blur-sm hover:bg-white/[0.11] hover:-translate-y-2 transition-all duration-300`}
-                style={{ boxShadow: "0 8px 32px hsl(20 40% 5% / 0.5)" }}
+                className={`group relative overflow-hidden rounded-2xl border border-gold/20 bg-white shadow-soft hover:shadow-warm hover:-translate-y-2 transition-all duration-300`}
+                style={{ boxShadow: "0 2px 16px hsl(43 78% 52% / 0.08)" }}
               >
                 <div className={`h-[3px] w-full bg-gradient-to-r ${item.color}`} />
-                <div className={`absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-300 pointer-events-none`} />
                 <div className="relative z-10 p-6 md:p-7">
                   <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-md mb-5 group-hover:scale-110 transition-transform duration-300`}>
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-display text-lg text-white mb-2">{t(`admissions.why${i + 1}Title`)}</h3>
-                  <p className="text-sm text-white/55 leading-relaxed mb-5">{t(`admissions.why${i + 1}Desc`)}</p>
-                  <div className="flex items-end gap-2 border-t border-white/[0.08] pt-4">
+                  <h3 className="font-display text-lg text-secondary mb-2">{t(`admissions.why${i + 1}Title`)}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">{t(`admissions.why${i + 1}Desc`)}</p>
+                  <div className="flex items-end gap-2 border-t border-gold/15 pt-4">
                     <span className="font-display text-2xl font-bold text-gradient-saffron">{item.stat}</span>
-                    <span className="text-xs text-white/40 pb-0.5">{t(`admissions.why${i + 1}StatLabel`)}</span>
+                    <span className="text-xs text-muted-foreground pb-0.5">{t(`admissions.why${i + 1}StatLabel`)}</span>
                   </div>
                 </div>
               </motion.div>
