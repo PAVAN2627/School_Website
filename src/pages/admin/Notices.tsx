@@ -78,26 +78,30 @@ const AdminNotices = () => {
 
       <div className="space-y-3">
         {items.map(n => (
-          <div key={n.id} className="bg-card rounded-xl border border-gold/15 p-4 flex items-start justify-between gap-4">
+          <div key={n.id} className="bg-card rounded-xl border border-gold/15 p-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div className="flex items-start gap-3 flex-1 min-w-0">
               <div className="p-2 rounded-lg bg-primary/10 text-primary mt-0.5 shrink-0">
                 <FileText className="h-4 w-4" />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-medium text-secondary">{n.title}</span>
+                  <span className="font-medium text-secondary truncate">{n.title}</span>
                   <span className={`px-2 py-0.5 rounded-full text-xs ${COLORS[n.category]}`}>{n.category}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-0.5 line-clamp-2">{n.body}</p>
-                <div className="flex items-center gap-3 mt-1">
-                  <span className="text-xs text-muted-foreground">{n.date}</span>
-                  {n.attachment && <a href={n.attachment} target="_blank" rel="noreferrer" className="text-xs text-primary hover:underline">Download PDF</a>}
+                <p className="text-sm text-muted-foreground mt-2 line-clamp-3 md:line-clamp-2">{n.body}</p>
+                <div className="flex flex-wrap items-center gap-3 mt-3 text-xs text-muted-foreground">
+                  <span>{n.date}</span>
+                  {n.attachment && <a href={n.attachment} target="_blank" rel="noreferrer" className="text-primary hover:underline">Download PDF</a>}
                 </div>
               </div>
             </div>
-            <div className="flex gap-2 shrink-0">
-              <button onClick={() => openEdit(n)} className="p-1.5 rounded hover:bg-muted text-muted-foreground"><Pencil className="h-3.5 w-3.5" /></button>
-              <button onClick={() => setItems(items.filter(i => i.id !== n.id))} className="p-1.5 rounded hover:bg-red-50 text-muted-foreground hover:text-red-500"><Trash2 className="h-3.5 w-3.5" /></button>
+            <div className="flex flex-wrap gap-2 items-center justify-end shrink-0">
+              <button onClick={() => openEdit(n)} className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gold/15 bg-muted hover:bg-muted/80 text-muted-foreground transition">
+                <Pencil className="h-4 w-4" />
+              </button>
+              <button onClick={() => setItems(items.filter(i => i.id !== n.id))} className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gold/15 bg-muted hover:bg-red-50 text-muted-foreground hover:text-red-500 transition">
+                <Trash2 className="h-4 w-4" />
+              </button>
             </div>
           </div>
         ))}

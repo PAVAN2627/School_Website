@@ -492,8 +492,6 @@ const messages: Record<Language, Record<TranslationKey, string>> = {
     "admissions.ctaVisit": "भ्रमण निर्धारित करें", "admissions.ctaCall": "अभी कॉल करें",
   },
 };
-
-// ─── context ───────────────────────────────────────────────────────────────────
 interface LanguageContextValue {
   language: Language;
   setLanguage: (language: Language) => void;
