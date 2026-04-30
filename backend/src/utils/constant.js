@@ -64,6 +64,13 @@ export const noticeCategory = {
 export const noticeCategoryEnums = Object.values(noticeCategory)
 
 
+const feeStructureClassGradeType = {
+    CLASS_I_II : "Class I - II",
+    CLASS_III_IV : "Class III - IV",
+    CLASS_V_VI : "Class V_VI",
+    CLASS_VII_VIII : "Class VII_VIII",
+    CLASS_IX_X : "Class IX_X",
+    CLASS_XI_XII : "Class XI_XII",
+}
 
-
-//
+export const feeStructureClassGradeTypeEnums = Object.values(feeStructureClassGradeType)

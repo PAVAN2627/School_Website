@@ -20,6 +20,25 @@ const newInquirie = asyncHandler(async(req,res)=>{
 
 })
 
+const updateInquirie = asyncHandler(async(req,res)=>{
+
+  const { inquirieId } = req.params
+
+  const inquirie = await Inquirie.findById(inquirieId)
+
+  if(!inquirie) {
+    throw new ApiError(404, "Inquired didn't find")
+  }
+
+  await Inquirie.findByIdAndUpdate(inquirieId, {
+    $set : {
+        isRead : true
+    }
+  })
+
+  return res.status(200).json(new ApiResponse(200, {}, "Quirie read"))
+})
+
 const getInquirie = asyncHandler(async(req,res)=>{
 
   const  inquiries = await Inquirie.find().lean()
@@ -46,5 +65,6 @@ const deleteInquirie = asyncHandler(async(req,res)=>{
 export {
   newInquirie,
   getInquirie,
-  deleteInquirie
+  deleteInquirie,
+  updateInquirie
 }
