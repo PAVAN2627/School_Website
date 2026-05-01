@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { toast } from "sonner";
-import heroContact from "@/assets/hero-contact.jpg";
+import heroContact from "@/assets/conatctus.png";
 
 const Contact = () => {
   const onSubmit = (e: React.FormEvent) => {
