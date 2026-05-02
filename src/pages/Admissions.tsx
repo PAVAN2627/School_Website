@@ -201,7 +201,7 @@ const Admissions = () => {
         sanskrit="॥ स्वागतम् ॥"
         subtitle={t("admissions.heroSubtitle")}
         image={heroAdmissions}
-        size="default"
+        size="full"
       />
 
       {/* ── Process Steps ── */}
@@ -560,10 +560,39 @@ const Admissions = () => {
                           <Label htmlFor="grade" className="text-sm font-medium">
                             {t("admissions.formGrade")} <span className="text-primary">*</span>
                           </Label>
-                          <Input id="grade" value={formData.grade} onChange={handleChange}
-                            placeholder={t("admissions.formGradePlaceholder")}
-                            className={`transition-all ${errors.grade ? "border-destructive" : validFields.grade ? "border-emerald-400" : ""}`}
-                            required />
+                          <div className="relative">
+                            <select
+                              id="grade"
+                              value={formData.grade}
+                              onChange={handleChange}
+                              required
+                              className={`w-full appearance-none rounded-md border bg-background px-3 py-2 pr-9 text-sm shadow-sm transition-colors focus:outline-none focus:ring-1 focus:ring-primary text-foreground ${
+                                errors.grade ? "border-destructive" : validFields.grade ? "border-emerald-400" : "border-input"
+                              }`}
+                            >
+                              <option value="">{t("admissions.formGradePlaceholder")}</option>
+                              <option value="Pre-K">Pre-K (Nursery)</option>
+                              <option value="LKG">LKG</option>
+                              <option value="UKG">UKG</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11 (Science)">Grade 11 – Science</option>
+                              <option value="Grade 11 (Commerce)">Grade 11 – Commerce</option>
+                              <option value="Grade 11 (Arts)">Grade 11 – Arts</option>
+                              <option value="Grade 12 (Science)">Grade 12 – Science</option>
+                              <option value="Grade 12 (Commerce)">Grade 12 – Commerce</option>
+                              <option value="Grade 12 (Arts)">Grade 12 – Arts</option>
+                            </select>
+                            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          </div>
                         </div>
 
                         <div className="space-y-1.5">

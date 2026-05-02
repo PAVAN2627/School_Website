@@ -11,7 +11,16 @@ export interface AboutFacility {
   image: string;
 }
 
+export interface AboutFaculty {
+  name: string;
+  role: string;
+  subject: string;
+  experience: string;
+  photo: string;
+}
+
 const ABOUT_FACILITIES_STORAGE_KEY = "vidyalaya-about-facilities";
+const ABOUT_FACULTY_STORAGE_KEY    = "vidyalaya-about-faculty";
 
 export const defaultFacilities: AboutFacility[] = [
   { title: "Smart Classrooms", desc: "Interactive boards, projectors and high-speed internet in every room.", image: heroAcademics },
@@ -49,11 +58,36 @@ export const loadAboutFacilities = (): AboutFacility[] => {
 };
 
 export const saveAboutFacilities = (facilities: AboutFacility[]) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-
+  if (typeof window === "undefined") return;
   localStorage.setItem(ABOUT_FACILITIES_STORAGE_KEY, JSON.stringify(facilities));
+};
+
+// ─── Faculty ──────────────────────────────────────────────────────────────────
+export const defaultFaculty: AboutFaculty[] = [
+  { name: "Dr. Arvind Krishnan",  role: "Principal",           subject: "Leadership & Administration", experience: "22 years", photo: "" },
+  { name: "Mrs. Sunita Sharma",   role: "Senior Teacher",      subject: "Mathematics",                 experience: "15 years", photo: "" },
+  { name: "Mr. Rajan Pillai",     role: "Head of Science",     subject: "Physics & Chemistry",         experience: "18 years", photo: "" },
+  { name: "Ms. Priya Nair",       role: "Language Faculty",    subject: "English & Sanskrit",          experience: "10 years", photo: "" },
+  { name: "Mr. Deepak Verma",     role: "Sports Coach",        subject: "Physical Education",          experience: "12 years", photo: "" },
+  { name: "Mrs. Kavitha Rao",     role: "Arts & Culture Head", subject: "Fine Arts & Music",           experience: "14 years", photo: "" },
+];
+
+export const loadAboutFaculty = (): AboutFaculty[] => {
+  if (typeof window === "undefined") return defaultFaculty;
+  try {
+    const raw = localStorage.getItem(ABOUT_FACULTY_STORAGE_KEY);
+    if (!raw) return defaultFaculty;
+    const parsed = JSON.parse(raw) as AboutFaculty[];
+    const sanitized = parsed.filter(f => f && typeof f.name === "string" && f.name.trim().length > 0);
+    return sanitized.length > 0 ? sanitized : defaultFaculty;
+  } catch {
+    return defaultFaculty;
+  }
+};
+
+export const saveAboutFaculty = (faculty: AboutFaculty[]) => {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(ABOUT_FACULTY_STORAGE_KEY, JSON.stringify(faculty));
 };
 
 // ─── About dynamic content (bilingual) ────────────────────────────────────────

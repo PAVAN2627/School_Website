@@ -35,6 +35,7 @@ const Notices = () => {
         sanskrit="॥ सूचना ॥"
         subtitle={t("notices.heroSubtitle")}
         image={heroNotices}
+        size="full"
       />
 
       <section className="container-narrow py-16">

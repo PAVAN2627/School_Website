@@ -23,17 +23,14 @@ export const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative mt-12 md:mt-16 overflow-hidden bg-[#1a0a00]">
+    <footer className="relative mt-12 md:mt-16 overflow-hidden bg-gradient-to-br from-[#1a0a00] via-[#2d1200] to-[#1a0800]">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 80% 50%, #f59e0b 0%, transparent 60%), radial-gradient(circle at 20% 50%, #dc2626 0%, transparent 55%)",
-        }}
+      {/* subtle radial glow */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{ backgroundImage: "radial-gradient(ellipse at 70% 40%, #f59e0b 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, #c2410c 0%, transparent 50%)" }}
       />
 
-      <div className="container-narrow relative grid gap-12 py-16 md:grid-cols-12">
+      <div className="container-narrow relative grid gap-12 py-14 md:grid-cols-12">
         {/* Brand */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

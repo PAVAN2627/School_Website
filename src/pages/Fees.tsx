@@ -17,11 +17,10 @@ const Fees = () => (
     <PageHero
       title="Fee Structure"
       sanskrit="॥ शुल्क विवरण ॥"
-      subtitle="Transparent, class-wise fee details for the academic year 2025–26."
+      subtitle="Clear, class-wise fee details for 2025–26. No hidden charges — just transparent pricing covering tuition, activities, and facilities. Scholarships and sibling discounts available."
       image={heroFees}
+      size="full"
     />
-
-    <section className="container-narrow py-16">
       <SectionHeader
         eyebrow="॥ शुल्काः ॥"
         title="Class-wise Fee Details"

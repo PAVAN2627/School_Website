@@ -6,9 +6,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
 import heroContact from "@/assets/conatctus.png";
+
+const SUBJECT_OPTIONS = [
+  "General Inquiry",
+  "Admissions",
+  "Fee Structure",
+  "Academic Programs",
+  "Scholarships",
+  "Campus Visit",
+  "Parent-Teacher Meeting",
+  "Complaint / Feedback",
+  "Other",
+];
 
 const Contact = () => {
   const onSubmit = (e: React.FormEvent) => {
@@ -29,9 +41,9 @@ const Contact = () => {
       <PageHero
         title="Visit Our Vidyalaya"
         sanskrit="॥ अतिथि देवो भव ॥"
-        subtitle="Parents, students, and guests are always welcome. Come meet us on campus or reach out for admissions and support."
+        subtitle="Parents, students, and guests are always welcome. Visit us at 108 Saraswati Marg, Bengaluru, call us at +91 98765 43210, or fill the form below — our team responds within one working day."
         image={heroContact}
-        size="default"
+        size="full"
       />
 
       <section className="container-narrow py-20 grid lg:grid-cols-5 gap-10">
@@ -74,7 +86,20 @@ const Contact = () => {
               </div>
               <div>
                 <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" required className="mt-1.5" />
+                <div className="relative mt-1.5">
+                  <select
+                    id="subject"
+                    required
+                    defaultValue=""
+                    className="w-full appearance-none rounded-md border border-input bg-background px-3 py-2 pr-9 text-sm shadow-sm transition-colors focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
+                  >
+                    <option value="" disabled>Select a subject…</option>
+                    {SUBJECT_OPTIONS.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                </div>
               </div>
               <div>
                 <Label htmlFor="message">Message</Label>

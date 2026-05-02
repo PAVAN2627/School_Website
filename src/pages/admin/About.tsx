@@ -7,12 +7,12 @@ import { Label } from "@/components/ui/label";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Pencil, Check, X, ChevronRight, Languages, Loader2,
-  BookOpen, Eye, Star, User, Building2, Save,
+  BookOpen, Eye, Star, User, Building2, Save, GraduationCap, Plus, Trash2,
 } from "lucide-react";
-import { defaultFacilities, loadAboutFacilities, saveAboutFacilities, loadAboutContent, saveAboutContent, defaultAboutContent, type AboutFacility, type AboutContent } from "@/lib/aboutContent";
+import { defaultFacilities, loadAboutFacilities, saveAboutFacilities, loadAboutContent, saveAboutContent, defaultAboutContent, type AboutFacility, type AboutContent, defaultFaculty, loadAboutFaculty, saveAboutFaculty, type AboutFaculty } from "@/lib/aboutContent";
 import { translateFields } from "@/lib/translate";
 
-type SectionKey = "history" | "missionVision" | "principal" | "facilities" | null;
+type SectionKey = "history" | "missionVision" | "principal" | "facilities" | "faculty" | null;
 
 // ─── Hindi preview block ───────────────────────────────────────────────────────
 const HindiBlock = ({ fields, onChange }: {
@@ -44,10 +44,12 @@ const AdminAbout = () => {
   const [saved, setSaved]                 = useState<SectionKey>(null);
   const [form, setForm]                   = useState<AboutContent>(defaultAboutContent);
   const [facilities, setFacilities]       = useState<AboutFacility[]>(defaultFacilities);
+  const [faculty, setFaculty]             = useState<AboutFaculty[]>(defaultFaculty);
   const [translating, setTranslating]     = useState<SectionKey>(null);
 
   useEffect(() => {
     setFacilities(loadAboutFacilities());
+    setFaculty(loadAboutFaculty());
     setForm(f => ({ ...f, ...loadAboutContent() }));
   }, []);
 
@@ -59,8 +61,12 @@ const AdminAbout = () => {
         .map(f => ({ title: f.title.trim(), desc: f.desc.trim(), image: f.image.trim() }))
         .filter(f => f.title && f.desc && f.image);
       saveAboutFacilities(clean.length > 0 ? clean : defaultFacilities);
+    } else if (key === "faculty") {
+      const clean = faculty
+        .map(f => ({ name: f.name.trim(), role: f.role.trim(), subject: f.subject.trim(), experience: f.experience.trim(), photo: f.photo.trim() }))
+        .filter(f => f.name);
+      saveAboutFaculty(clean.length > 0 ? clean : defaultFaculty);
     } else {
-      // persist all text content (both languages) to localStorage
       saveAboutContent(form);
     }
     setSaved(key);
@@ -81,6 +87,9 @@ const AdminAbout = () => {
 
   const updateFacility = (i: number, field: keyof AboutFacility, value: string) =>
     setFacilities(prev => prev.map((f, idx) => idx === i ? { ...f, [field]: value } : f));
+
+  const updateFacultyMember = (i: number, field: keyof AboutFaculty, value: string) =>
+    setFaculty(prev => prev.map((f, idx) => idx === i ? { ...f, [field]: value } : f));
 
   const handleImageUpload = (i: number, e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -289,6 +298,57 @@ const AdminAbout = () => {
           <Button type="button" onClick={() => setFacilities(prev => [...prev, { title: "", desc: "", image: "" }])}
             variant="outline" size="sm" className="gap-1.5">
             + Add Facility
+          </Button>
+        </SectionCard>
+
+        {/* ── Faculty ── */}
+        <SectionCard id="faculty" icon={GraduationCap} iconColor="bg-teal-100 text-teal-600"
+          title="Faculty Members" summary={`${faculty.length} faculty members listed`}
+        >
+          <div className="space-y-3">
+            {faculty.map((f, i) => (
+              <div key={i} className="rounded-xl border border-gold/20 bg-muted/20 p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-primary uppercase tracking-wide">Faculty {i + 1}</span>
+                  {faculty.length > 1 && (
+                    <button type="button" onClick={() => setFaculty(prev => prev.filter((_, idx) => idx !== i))}
+                      className="flex items-center gap-1 text-xs text-red-500 hover:text-red-600 font-medium">
+                      <Trash2 className="h-3 w-3" /> Remove
+                    </button>
+                  )}
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Full Name</Label>
+                    <Input value={f.name} onChange={e => updateFacultyMember(i, "name", e.target.value)} placeholder="e.g. Dr. Arvind Krishnan" className="border-gold/25" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Role / Designation</Label>
+                    <Input value={f.role} onChange={e => updateFacultyMember(i, "role", e.target.value)} placeholder="e.g. Head of Science" className="border-gold/25" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Subject</Label>
+                    <Input value={f.subject} onChange={e => updateFacultyMember(i, "subject", e.target.value)} placeholder="e.g. Physics & Chemistry" className="border-gold/25" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Experience</Label>
+                    <Input value={f.experience} onChange={e => updateFacultyMember(i, "experience", e.target.value)} placeholder="e.g. 12 years" className="border-gold/25" />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Photo URL (optional)</Label>
+                  <Input value={f.photo} onChange={e => updateFacultyMember(i, "photo", e.target.value)} placeholder="https://..." className="border-gold/25" />
+                </div>
+                {f.photo && (
+                  <img src={f.photo} alt={f.name} className="h-16 w-16 rounded-full object-cover border-2 border-gold/30" />
+                )}
+              </div>
+            ))}
+          </div>
+          <Button type="button"
+            onClick={() => setFaculty(prev => [...prev, { name: "", role: "", subject: "", experience: "", photo: "" }])}
+            variant="outline" size="sm" className="gap-1.5">
+            <Plus className="h-3.5 w-3.5" /> Add Faculty Member
           </Button>
         </SectionCard>
 

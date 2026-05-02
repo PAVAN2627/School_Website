@@ -40,8 +40,8 @@ const stats = [
 const quickLinkDefs = [
   { to: "/notices",    icon: FileText,     labelKey: "home.ql1.label", subKey: "home.ql1.sub", color: "from-orange-500 to-red-500" },
   { to: "/fees",       icon: Wallet,       labelKey: "home.ql2.label", subKey: "home.ql2.sub", color: "from-yellow-500 to-orange-500" },
-  { to: "/calendar",   icon: CalendarDays, labelKey: "home.ql3.label", subKey: "home.ql3.sub", color: "from-teal-500 to-blue-600" },
-  { to: "/admissions", icon: BookOpen,     labelKey: "home.ql4.label", subKey: "home.ql4.sub", color: "from-purple-500 to-pink-500" },
+  { to: "/calendar",   icon: CalendarDays, labelKey: "home.ql3.label", subKey: "home.ql3.sub", color: "from-orange-400 to-amber-500" },
+  { to: "/admissions", icon: BookOpen,     labelKey: "home.ql4.label", subKey: "home.ql4.sub", color: "from-amber-500 to-orange-600" },
 ] as const;
 
 const testimonialKeys = [
@@ -170,9 +170,9 @@ const Index = () => {
                   <p className="text-sm font-semibold text-foreground/90 leading-snug">{language === "hi" && a.titleHi ? a.titleHi : a.title}</p>
                   <div className="mt-1.5 flex items-center gap-2">
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${
-                      a.category === "Urgent" ? "bg-red-100 text-red-600" :
-                      a.category === "Exam"   ? "bg-blue-100 text-blue-600" :
-                      a.category === "Event"  ? "bg-purple-100 text-purple-600" :
+                      a.category === "Urgent" ? "bg-orange-100 text-orange-600" :
+                      a.category === "Exam"   ? "bg-amber-100 text-amber-700" :
+                      a.category === "Event"  ? "bg-orange-50 text-orange-500" :
                       "bg-primary/10 text-primary"
                     }`}>{a.category}</span>
                     <span className="text-[11px] text-muted-foreground">{a.date}</span>
@@ -185,7 +185,7 @@ const Index = () => {
 
         {/* Upcoming Events */}
         <div className="overflow-hidden rounded-3xl border border-gold/20 bg-card shadow-soft">
-          <div className="bg-gradient-peacock px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-festive px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20">
                 <CalendarDays className="h-4 w-4 text-white" />
@@ -203,8 +203,8 @@ const Index = () => {
             {calendarEvents.slice(0, 4).map(e => {
               const d = new Date(e.date);
               const COLORS: Record<string, string> = {
-                Exam: "bg-red-500", Result: "bg-blue-500", Holiday: "bg-green-500",
-                Meeting: "bg-yellow-500", Event: "bg-purple-500", Leave: "bg-orange-500",
+                Exam: "bg-orange-500", Result: "bg-amber-500", Holiday: "bg-yellow-500",
+                Meeting: "bg-orange-400", Event: "bg-amber-600", Leave: "bg-orange-300",
               };
               return (
                 <li key={e.id} className="flex items-center gap-4 px-5 py-4 hover:bg-muted/30 transition-colors">
@@ -307,37 +307,63 @@ const Index = () => {
           />
         </div>
 
-        {/* Marquee track — duplicated for seamless loop */}
-        <div
-          className="relative flex overflow-hidden"
-          style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}
-        >
-          {/* pause on hover via CSS group */}
-          <div className="flex gap-4 animate-[gallery-scroll_35s_linear_infinite]"
-            style={{ width: "max-content" }}
+        {/* Two rows scrolling in opposite directions */}
+        <div className="flex flex-col gap-4">
+          {/* Row 1 — scrolls left */}
+          <div
+            className="relative flex overflow-hidden"
+            style={{ maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)" }}
           >
-            {[...galleryItems, ...galleryItems].map((item, i) => (
-              <div
-                key={i}
-                className="relative w-72 h-48 shrink-0 rounded-2xl overflow-hidden border border-gold/20 shadow-soft group"
-              >
-                <img
-                  src={item.src}
-                  alt={t(item.labelKey)}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                {/* label */}
-                <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-center gap-2">
-                  <span className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60" />
-                  <span className="font-display text-xs font-semibold tracking-widest uppercase text-amber-200 drop-shadow-md whitespace-nowrap">
-                    {t(item.labelKey)}
-                  </span>
-                  <span className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/60" />
+            <div
+              className="flex gap-4 animate-[gallery-scroll_40s_linear_infinite]"
+              style={{ width: "max-content" }}
+            >
+              {[...galleryItems, ...galleryItems].map((item, i) => (
+                <div
+                  key={i}
+                  className="relative w-[420px] h-64 shrink-0 rounded-2xl overflow-hidden border border-gold/20 shadow-soft group cursor-pointer"
+                >
+                  <img
+                    src={item.src}
+                    alt={t(item.labelKey)}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 px-5 py-4">
+                    <p className="font-sanskrit text-xs text-amber-300/80 mb-1">{item.sanskrit}</p>
+                    <p className="font-display text-base font-semibold text-white drop-shadow-md">{t(item.labelKey)}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 — scrolls right (reverse) */}
+          <div
+            className="relative flex overflow-hidden"
+            style={{ maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)" }}
+          >
+            <div
+              className="flex gap-4 animate-[gallery-scroll_40s_linear_infinite_reverse]"
+              style={{ width: "max-content" }}
+            >
+              {[...galleryItems.slice().reverse(), ...galleryItems.slice().reverse()].map((item, i) => (
+                <div
+                  key={i}
+                  className="relative w-[340px] h-52 shrink-0 rounded-2xl overflow-hidden border border-gold/20 shadow-soft group cursor-pointer"
+                >
+                  <img
+                    src={item.src}
+                    alt={t(item.labelKey)}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3">
+                    <p className="font-display text-sm font-semibold text-white drop-shadow-md">{t(item.labelKey)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -359,29 +385,57 @@ const Index = () => {
 
       {/* ── Testimonials ── */}
       <section className="container-narrow py-24">
-        <SectionHeader eyebrow="॥ अनुभवाः ॥" title={t("home.testimonials.title")} />
+        <SectionHeader eyebrow="॥ अनुभवाः ॥" title={t("home.testimonials.title")} subtitle={t("home.testimonials.sub")} />
         <div className="grid md:grid-cols-3 gap-6">
           {testimonialKeys.map((tk, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.05 }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative overflow-hidden rounded-3xl section-surface ornate-frame border border-gold/30 shadow-soft hover:-translate-y-1.5 hover:shadow-warm transition-all duration-300"
+              transition={{ delay: i * 0.12, duration: 0.5 }}
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-gold/25 bg-card shadow-soft hover:-translate-y-2 hover:shadow-warm transition-all duration-300"
             >
-              <div className="h-2 w-full bg-gradient-festive" />
-              <div className="p-7">
-                <Quote className="h-8 w-8 text-primary/40 mb-4" />
-                <p className="text-foreground/85 leading-relaxed mb-6">{t(tk.text)}</p>
-                <div className="flex items-center gap-3 rounded-2xl border border-gold/20 bg-background/60 px-4 py-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-saffron text-primary-foreground font-display text-sm font-bold shadow-gold">
-                    {t(tk.name).charAt(0)}
+              {/* top gradient bar */}
+              <div className="h-1.5 w-full bg-gradient-festive" />
+
+              {/* large decorative quote mark */}
+              <div className="absolute top-6 right-6 font-display text-[7rem] leading-none text-primary/[0.06] select-none pointer-events-none">"</div>
+
+              <div className="flex flex-col flex-1 p-7">
+                {/* stars */}
+                <div className="flex gap-1 mb-5">
+                  {[...Array(5)].map((_, s) => (
+                    <svg key={s} className="h-4 w-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* quote text */}
+                <p className="flex-1 text-[0.95rem] leading-relaxed text-foreground/80 italic mb-8">
+                  "{t(tk.text)}"
+                </p>
+
+                {/* divider */}
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent mb-5" />
+
+                {/* author row */}
+                <div className="flex items-center gap-4">
+                  <div className="relative shrink-0">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-saffron text-primary-foreground font-display text-lg font-bold shadow-gold ring-2 ring-gold/20">
+                      {t(tk.name).charAt(0)}
+                    </div>
+                    {/* small verified dot */}
+                    <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-400 ring-2 ring-card">
+                      <svg className="h-2.5 w-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className="font-display text-sm text-secondary whitespace-nowrap">{t(tk.name)}</span>
-                    <span className="text-muted-foreground">·</span>
-                    <span className="text-xs text-muted-foreground truncate">{t(tk.role)}</span>
+                  <div>
+                    <p className="font-display font-semibold text-secondary text-sm leading-tight">{t(tk.name)}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t(tk.role)}</p>
                   </div>
                 </div>
               </div>

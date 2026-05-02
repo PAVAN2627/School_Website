@@ -75,7 +75,7 @@ const About = () => {
       sanskrit={t("about.heroSanskrit")}
       subtitle={t("about.heroSubtitle")}
       image={heroAbout}
-      size="default"
+      size="full"
     />
 
     {/* Mission Vision Values */}

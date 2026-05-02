@@ -152,7 +152,7 @@ const Academics = () => {
         sanskrit="॥ सा विद्या या विमुक्तये ॥"
         subtitle={t("academics.heroSubtitle")}
         image={heroAcademics}
-        size="default"
+        size="full"
       />
 
       {/* ── Stats Bar ── */}
